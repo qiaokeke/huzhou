@@ -1,0 +1,82 @@
+.aaa {
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-style: none;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-right-color: blue;
+    border-bottom-color: blue;
+    border-left-color: blue;
+    text-align: center;
+}
+
+.table th,
+.table td,
+thead tr {
+    text-align: center;
+    vertical-align: middle!important;
+    border: 3px solid #ddd;
+    border-collapse: collapse;
+}
+
+.table>thead>tr>th {
+    border-bottom: 1px solid #ddd;
+}
+
+.reading-time {
+    font-size: small;
+}
+
+#text1 {
+    text-indent: 1cm;
+}
+
+h3 {
+    margin-top: 30px !important;
+}
+
+#print-input {
+    float: right;
+    right: 30px;
+}
+
+#cecep {
+    margin-top: -60px;
+}
+
+#table-two {
+    margin: 0 auto;
+}
+
+table {
+    // page-break-after: always;
+}
+
+@media print {
+    #print-input {
+        display: none;
+    }
+
+    .table th,
+    .table td,
+    thead tr {
+        text-align: center;
+        vertical-align: middle!important;
+        border: 3px solid #ddd;
+        border-collapse: collapse;
+    }
+    td {
+        text-align: center;
+        vertical-align: middle!important;
+        border: 3px solid #ddd;
+        border-collapse: collapse;
+    }
+}
+
+@media screen and (max-width:980px) {
+    #topic {
+        width: 884px;
+    }
+}

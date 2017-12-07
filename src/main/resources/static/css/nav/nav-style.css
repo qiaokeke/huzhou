@@ -1,0 +1,86 @@
+* {
+    margin: 0;
+    padding: 0
+}
+
+html,
+body {
+    height: 100%
+}
+
+.wrapper {
+    min-height: 100%;
+}
+
+.main {
+    padding-bottom: 140px;
+}
+
+#footer-in {
+    height: 121px;
+    margin-top: -121px;
+}
+
+
+#footer-left-ul {
+    float: left;
+}
+
+#footer-left-ul li {
+    font-size: larger !important;
+}
+
+#footer-right-ul {
+    float: right;
+    text-align: center;
+}
+
+ul li {
+    list-style: none;
+}
+
+#footer-left-ul,
+#footer-right-ul {
+    padding-top: 20px;
+    margin-bottom: 0 !important;
+}
+
+#footer-left-ul li a,
+#footer-right-ul li a {
+    color: #626662;
+    font-size: large;
+}
+
+#foot-top {
+    height: 80px;
+    color: #626662;
+}
+
+#foot-bottom {
+    height: 40px;
+    text-align: center;
+    color: #626662;
+    line-height: 40px;
+}
+
+#nav-footer {
+    border-top: #9c9cc0 1px solid !important;
+}
+
+footer {
+    /*margin-top:20px !important;*/
+    padding-bottom: 0 !important;
+    background-color: white !important;
+}
+
+.navbar {
+    margin-bottom: 0 !important;
+}
+
+
+
+/*覆盖nav类默认的高度，防止滚动条出来*/
+
+footer nav {
+    height: 130px !important;
+}

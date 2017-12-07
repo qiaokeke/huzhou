@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.huzhou.mapper.test1.PowerInfoDao" >
+    <!--为了防止，实体类的名称和数据库字段的名称不一致-->
+    <resultMap id="BaseResult" type="com.example.huzhou.entity.BasePowerInfo">
+        <result column="P_A_DIANYA" property="pADianya" />
+        <result column="P_A_DIANLIU" property="pADianliu" />
+        <result column="P_A_YGGL" property="pAYggl" />
+        <result column="P_HXYGGL" property="pHXYggl" />
+        <result column="P_A_GLYS" property="pAGlys" />
+        <result column="P_BY_KwhP" property="pBYKwhP" />
+        <association property="powerInfo" column="powerInfo" javaType="com.example.huzhou.entity.PowerInfo">
+            <result column="P_BY_KwhZ" property="pBYKwhZ" />
+            <result column="P_BY_KwhJ" property="pBYKwhJ" />
+            <result column="P_BY_KwhF" property="pBYKwhF" />
+            <result column="P_TIME" property="pTime" />
+            <result column="P_CODE" property="pCode" />
+            <result column="P_BY_KwhG" property="pBYKwhG" />
+        </association>
+    </resultMap>
+    <!--可以在这里写sql，也可以在注解上写sql-->
+
+    <!--实时监测-实时数据-取出一中的12个时间段的数据-->
+    <!--<select id="selectWaterDataPerHour" resultType="com.example.huzhou.entity.PowerInfo" parameterType="java.lang.Integer" >
+        select
+        p_time,avg(P_A_WGGL)
+        from tbl_power_info
+        GROUP BY (SELECT hour(P_TIME));
+    </select>-->
+    <!--@Select("select P_SYDN from tbl_power_info WHERE P_CODE =#{pCode}")-->
+    <!--List<PowerInfo> selectWarningConsumption(@Param("category") String category,@Param("pCode") int pCode,@Param("time") String time);-->
+   <!-- <select id="selectWarningConsumption" resultType="com.example.huzhou.entity.PowerInfo" parameterType="int">
+        select P_SYDN AS pSYDN from tbl_power_info
+        WHERE P_CODE =#{pCode}
+    </select>-->
+
+    <select id="selectCurrElectric" parameterType="java.lang.Integer" resultType="java.lang.Double">
+        SELECT P_BYDN pBydn FROM tbl_power_info WHERE P_TIME IN (
+         SELECT MAX(P_TIME) FROM tbl_power_info WHERE DATE (P_TIME) = DATE(now())
+             <if test='pCode != "0"'>
+                 AND P_CODE = #{pCode}
+             </if>
+              )
+    </select>
+
+    <select id="getConsumptionByToday" resultMap="BaseResult">
+        SELECT P_CODE,P_TIME, P_A_DIANYA ,P_A_DIANLIU ,P_A_YGGL ,P_HXYGGL ,P_A_GLYS ,
+     P_BY_KwhZ ,P_BY_KwhJ ,P_BY_KwhF ,P_BY_KwhP  ,P_BY_KwhG  FROM tbl_power_info_v2 WHERE P_TIME IN (
+     SELECT max(P_TIME) FROM tbl_power_info_v2 WHERE DATE_FORMAT(P_TIME,'%Y-%m-%d') = DATE_FORMAT(now(),'%Y-%m-%d')
+     GROUP BY P_CODE)
+    </select>
+
+</mapper>

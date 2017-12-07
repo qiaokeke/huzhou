@@ -1,0 +1,101 @@
+﻿body{
+  background-image: url("../picture/map/3d.jpeg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+/*加边框测试*/
+.b{
+  border: 1px solid red;
+}
+/*时间图标*/
+.time{
+  font-size: 25px;
+  color: #6FF5F6;
+}
+/*时间显示*/
+.now{
+  font-size: 20px;
+  color: white;
+}
+/*标题字体*/
+.title-font{
+  font-size: 250%;
+  color: white;
+}
+/*各个图表的标题*/
+.item-font{
+  font-size: 150%;
+  color: white;
+}
+/*图表的宽度*/
+.item-style{
+  width: 25%;
+}
+/*左1图表*/
+.item-1{
+  height: 250px;
+}
+/*表格补充样式*/
+.table-bg{
+  color: #6FF5F6;
+  height: 100%;
+  background-color: black;
+  opacity: 0.8;
+  filter: Alpha(opacity=80);/* lt IE 8*/
+  border: 0px solid transparent !important;
+}
+span.badge{
+  background-color: #6FF5F6;
+}
+/*左下第二个表格*/
+#item2{
+  height: 280px;
+}
+/*中间板块*/
+.center{
+  width: 50%;
+  height: 560px;
+}
+/*今日能耗*/
+.center-top{
+  color: #F2BD17;
+  font-size: 200%;
+}
+/*今日能耗 数字*/
+.fDiv{
+  width: 21px;
+  background-color: #6FF5F6;
+  height: 100%;
+  float: left;
+  margin-left: 5px;
+  font-size: 200%;
+  color: black;
+  text-align: center;
+}
+/*能耗榜单*/
+.item3{
+  margin-top: 240px;
+  height: 280px;
+}
+#center-bottom{
+  height: 250px;
+}
+
+#right{
+  /* width: 200px; */
+  /* height: 200px; */
+}
+
+#right-top{
+  height: 250px;
+}
+
+#right-bottom{
+  height: 360px;
+}
+
+#filter{
+  width:100%;
+  background:rgba(0,0,0,0.61);
+  }

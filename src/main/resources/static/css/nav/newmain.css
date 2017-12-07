@@ -1,0 +1,218 @@
+/* =============================================================
+   GENERAL STYLES
+ ============================================================ */
+
+.bg{
+    background: url("../../picture/backgrounds/bg.jpg") no-repeat top;
+    background-size: 100%;
+}
+.just-txt-div {
+    padding-bottom:30px;
+    padding-top:30px;
+}
+.just-txt-div p {
+    padding-top:10px;
+}
+.head-line {
+    font-weight:500;
+    text-align: left;
+    /*text-align:center;*/
+    text-transform:uppercase;
+    font-size:30px;
+    font-family: 'Lobster', cursive;
+}
+.pad-set {
+    padding-top:50px;
+    padding-bottom:50px;
+}
+.pad-top {
+    padding-top:50px;
+}
+
+
+/* =============================================================
+   NAVBAR & MENU STYLES
+ ============================================================ */
+
+/*.nav > li > a:hover{
+    text-decoration:none;
+    background: #000;
+    height: 25px;
+    padding: 50px 15px 3px 10px;
+}*/
+.height {
+    height: 520px;
+}
+
+.navz {
+    width: -moz-fit-content;
+    float: right;
+    height: 50px;
+    padding-left: 100px;
+    padding-top: 20px;
+}
+.right-div {
+    float: right;
+    padding: 20px;
+    font-size:20px;
+}
+#menu-top a {
+    color: #000;
+    text-decoration:none;
+    padding: 0 15px 3px 10px;
+    text-transform:uppercase;
+    font-size:22px;
+    font-weight:100;
+}
+#dropdown_height{
+    line-height: 30px;
+    font-family: sans-serif 宋体;
+    font-size: 24px;
+    padding: 0 15px 3px 10px;
+}
+.menu-section {
+    background-color: #fff;
+    border-bottom:5px solid #f1f1f1;
+    width:100%
+}
+.menu-font{
+    font-family:宋体 sans-serif;
+    color: #d9edf7;
+    font-size: 30px !important;
+}
+.menu-top-active {
+    /*color:#c1ffc9;*/
+    background-color:#eeeeee;
+}
+.navbar-inverse {
+    background-color: #FFF;
+    border-color: rgba(155, 153, 153, 0.23);
+}
+
+.navbar {
+    min-height: 70px;
+    margin-bottom: 0;
+
+}
+.navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+    border-color:transparent;
+}
+.navbar-toggle {
+    background-color: black;
+    border: 1px solid black;
+}
+
+/*简介栏与滚动栏*/
+.pad-set {
+    padding-top:40px;
+    padding-bottom:50px;
+}
+
+/* =============================================================
+   SLIDESHOW / CAROUSEL STYLES
+ ============================================================ */
+
+#carousel-div {
+    border:3px solid #e1e1e1;
+}
+.carousel-caption {
+    top:50px;
+}
+.carousel-caption h1 {
+    text-align:center;
+    font-size:30px;
+    font-weight:900;
+    text-transform:uppercase;
+    background-color:rgba(0, 0, 0, 0.65);
+    max-width:440px;
+    padding:15px 25px;
+
+
+
+}
+.carousel-caption h2 {
+    text-align:center;
+    font-size:25px;
+    font-weight:900;
+    text-transform:uppercase;
+    background-color:rgba(0, 0, 0, 0.65);
+    max-width:340px;
+    padding:15px 25px;
+
+
+}
+.copyrights{
+    text-indent:-9999px;
+    height:0;
+    line-height:0;
+    font-size:0;
+    overflow:hidden;
+}
+/* =============================================================
+   footer
+ ============================================================ */
+.footer-sec {
+/*    margin-top:50px;
+    padding-top:30px;*/
+    color:#d9edf7;
+    background-color: #01a2a6;
+    /*padding-bottom:20px;*/
+    opacity:0.6;
+}
+
+/* =============================================================
+   new-navbar
+ ============================================================ */
+
+#user-icon {
+    /* float: left; */
+    padding-top: 15px;
+}
+#user-name {
+    /* display: none; */
+    /* padding-left: 20px; */
+    line-height: 20px;
+    font-size: large;
+    color: #786a6a;
+    /* float: left; */
+}
+
+#user-name{
+    position: absolute;
+    margin-left: 0;
+    padding-left: 0;
+    /* display: none; */
+}
+#user-name ul{
+    padding-left: 0;
+    margin-left: 50px;
+    margin-top: -40px;
+}
+#before-login {
+    /*display: none;*/
+    padding-left: 20px;
+    line-height: 80px;
+    font-size: large;
+    color: #4646e0;
+    cursor: pointer;
+    float: left;
+}
+
+.logout {
+    color: #4646e0;
+    cursor: pointer;
+    font-size: small;
+    margin-left: 10px;
+}
+
+/* =============================================================
+   top_warmming
+ ============================================================ */
+.alert {
+    margin-bottom: 0;
+}
+
+.alert-warning {
+    background-color: #fed6da;
+    border: none;
+}

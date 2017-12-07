@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.huzhou.mapper.test1.UserOwnerDao" >
+  <!--为了防止，实体类的名称和数据库字段的名称不一致  要全部对应吗-->
+  <resultMap id="BaseResultMap" type="com.example.huzhou.entity.UserOwner" >
+    <!--<result column="userId" property="id" jdbcType="INTEGER"/>-->
+    <result column="A_CODE" property="aCode" jdbcType="VARCHAR" />
+    <result column="A_ENAME" property="aEname" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="selectCompanyNameById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    SELECT A_CODE ,A_ENAME FROM tbl_area
+    <where>
+      <if test='_parameter != "1" '>
+        A_CODE IN (
+        SELECT a_code FROM t_user_per,t_user
+        WHERE t_user.user_id =#{_parameter} AND #{_parameter}= t_user_per.user_id
+        )
+      </if>
+
+    </where>
+
+  </select>
+  <select id="selectPcodeByAcode" parameterType="java.lang.String" resultType="java.lang.Integer">
+    SELECT AH_HARDWARE_ID FROM tbl_area_hardware
+    <where>
+      <if test="code != null ">
+          AH_AREA_ID = #{code,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+
+  <select id="selectCurrWater" parameterType="java.lang.String" resultType="com.example.huzhou.entity.WaterInfo">
+    SELECT  W_TIME time,W_ADDRESS address, W_READINGS readings FROM tbl_water_info where W_TIME = (
+    SELECT  MAX(W_TIME) FROM tbl_water_info WHERE DATE (W_TIME) = DATE(now()) )
+    AND W_ADDRESS IN (SELECT w_addr FROM t_water_area
+    <where>
+      <if test="aCode != null">
+        a_code = #{aCode,jdbcType=VARCHAR}
+      </if>
+    </where>
+    )
+    GROUP BY W_ADDRESS
+  </select>
+</mapper>

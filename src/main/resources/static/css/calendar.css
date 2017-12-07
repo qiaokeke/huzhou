@@ -1,0 +1,44 @@
+body{
+  background-image: url(../../../picture/backgrounds/bg.jpg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-background-size: 100% 100%;
+}
+form{
+  /*border: 1px solid red;*/
+  width: 240px;
+  margin-top:10px;
+}
+/*导航条*/
+ul.nav > li > a{
+  font-size: 1.5em;
+}
+a.navbar-brand{
+  padding: 0;
+}
+nav.navbar{
+  height: 61px;
+  background-color: white;
+  margin-bottom: 0px;
+}
+div.navbar-collapse{
+  margin-top: 4px;
+  background-color: white;
+  margin-left: -15px !important;
+  margin-right: -15px !important;
+}
+div.navbar-header{
+  height: 61px;
+}
+li > a:hover{
+  color: #29A7F0 !important;
+}
+ol.breadcrumb{
+  background-color: transparent;
+}
+/*媒体查询*/
+@media screen and (max-width: 768px) {
+  div.navbar-collapse{
+    margin-top: -2px;
+  }
+}

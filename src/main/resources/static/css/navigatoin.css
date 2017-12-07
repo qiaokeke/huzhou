@@ -1,0 +1,68 @@
+ul.nav > li > a{
+  font-size: 1.5em;
+}
+a.navbar-brand{
+  padding: 0;
+}
+nav.navbar{
+  height: 61px;
+  background-color: white;
+  margin-bottom: 0px;
+}
+div.navbar-collapse{
+  margin-top: 4px;
+  background-color: white;
+  margin-left: -15px !important;
+  margin-right: -15px !important;
+}
+div.navbar-header{
+  height: 61px;
+}
+li > a:hover{
+  color: #29A7F0 !important;
+}
+
+a:hover{
+	text-decoration:none;
+}
+body{
+  background-image: url(../../../picture/backgrounds/bg.jpg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-background-size: 100% 100%;
+}
+ol.breadcrumb{
+  background-color: transparent;
+}
+div.center-block{
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 300px;
+  height: 300px;
+}
+#gap{
+	height:10%;
+}
+img.img-responsive{
+	width:85%;
+	height:85%;
+}
+/*
+div.manager{
+  background-image: url(../../../picture/images/manager.png);
+}
+div.user{
+  background-image: url(../../../picture/images/user.png);
+}
+div.content{
+  position: absolute;
+  top: 30%;
+  left: 25%;
+}
+*/
+/*媒体查询*/
+@media screen and (max-width: 768px) {
+  div.navbar-collapse{
+    margin-top: -2px;
+  }
+}

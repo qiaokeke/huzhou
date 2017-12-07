@@ -1,0 +1,54 @@
+.test {
+    border: 1px solid red;
+}
+
+body {
+    background: url("../../picture/backgrounds/bg.jpg") no-repeat top;
+    background-size: 100%;
+}
+
+#nav-back{
+	height: 40px;
+	line-height: 40px;
+	color: #259;
+}
+
+#nav-back a{
+	text-decoration: none;
+}
+
+#voltage_current{
+	margin-top: 2em;
+	height: 400px;
+}
+
+#water_data{
+	height: 400px;
+}
+
+#data-wrap{
+	height: 400px;
+	margin-top: 2em;
+}
+
+#detail-data,#warming-data{
+	padding: 0;
+}
+
+table caption{
+	font-weight: bold;
+	font-size: larger;
+	background-color: #9e9292;
+	color: white;
+}
+
+.table th, .table td { 
+text-align: center;
+vertical-align: middle!important;
+}
+
+@media screen  and (min-width: 992px){
+	#warming-data{
+		padding-left: 10px;
+	}
+}

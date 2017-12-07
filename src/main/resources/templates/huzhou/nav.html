@@ -1,0 +1,74 @@
+<div class='container-fluid nav-top-cont' id="new-nav">
+    <div class="menu-font row ">
+        <div class="col-md-5 col-sm-5">
+            <div class="navbar-header">
+                <a href="main">
+                 <img src="/static/picture/logo.png" id="company-logo" />
+             </a>
+            </div>
+        </div>
+        <div class="col-md-5 col-sm-5" style="height: 81px;">
+            <div class="navbar-menu" id="navbar-menu">
+                <div id='top-main-menu'>
+                    <ul id="menu-top" class="nav navbar-nav navbar-right">
+                        <li><a href="main">首页</a></li>
+                        <li><a href="indexDnhgl">绿色.低碳.能源.大数据平台</a></li>
+                        <li><a href="yqfw" role="button">智慧园区服务</a></li> <!--园区角色和租户角色对应相同的页面-->
+                        <!--<li><a href="navigation">绿色.低碳.能源.大数据平台</a></li>-->
+                        <!--<li><a href="navigation" role="button">智慧园区服务</a></li>-->
+                    </ul>
+                </div>
+                <a href='javascript:toggleMore();' class='btn' id='top-nav-bt'>
+                 <i class="fa fa-bars" aria-hidden="true"></i>
+             </a>
+                <div id='nav-login-area'>
+                    <div id='top-my-menu'>
+                        <a href='main' class='btn'>首页</a>
+                        <!--低碳.能源.环境管理平台-->
+                        <a href='indexDnhgl' class='btn'>低碳能源平台</a>
+                        <a href='yqfw' class='btn'>园区服务</a>
+                        <a href='javascript:void (0)' class='btn'></a>
+                        <a href='javascript:void (0)' class='btn'></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-2">
+         <!--   <@shiro.hasRole name ="admin">
+            管理员登陆了才显示的内容，出现了，哈哈
+            </@shiro.hasRole>-->
+            <@shiro.user>
+                <div id="user-icon">
+                    <img src="/static/picture/user-icon-min.png" class="img-responsive" />
+                </div>
+                <div id="user-name">
+                    <ul>
+                        <li><span id=""><@shiro.principal/></span></li>  <!--显示空白-->
+                        <li><span class="logout"><a href="logout">退出</a></span></li>
+                    </ul>
+                </div>
+            </@shiro.user>
+            <@shiro.guest>
+                <div id="before-login">
+                    <span id="log"><a href="login">登录</a></span>
+                </div>
+            </@shiro.guest>
+           <!-- <#if username??>
+                <div id="user-icon">
+                    <img src="/static/picture/user-icon-min.png" class="img-responsive" />
+                </div>
+                <div id="user-name">
+                    <ul>
+                        <li><span id="">${(username)!"empty"}</span></li>  &lt;!&ndash;显示空白&ndash;&gt;
+                        <li><span class="logout"><a href="logout">退出</a></span></li>
+                    </ul>
+                </div>
+                <#else>
+                    <div id="before-login">
+                        <span id="log"><a href="login">登录</a></span>
+                        &lt;!&ndash;<span id="log-in"><a href="login">登录</a></span>&ndash;&gt;
+                    </div>
+            </#if>-->
+        </div>
+    </div>
+</div>

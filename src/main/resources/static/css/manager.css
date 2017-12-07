@@ -1,0 +1,83 @@
+body{
+  background-image: url(../../../picture/backgrounds/bg.jpg);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-background-size: 100% 100%;
+}
+.common{
+  height: 300px;
+}
+
+.common-grid{
+  height: 400px;
+}
+/*test*/
+.test{
+  border: 1px solid red;
+}
+
+ul.pagination{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin:0;
+}
+
+table th{
+  background-color: #222222;
+  color: white;
+}
+
+.table-container{
+  height: 80%;
+  margin-left: -15px;
+  margin-right: -15px;
+  overflow-y: auto;
+}
+
+th{
+  height: 1em;
+}
+
+.title{
+  font-size: large;
+  font-weight: bold;
+  color: #333333;
+}
+
+table a{
+  color: #333333;
+}
+/*导航条*/
+ul.nav > li > a{
+  font-size: 1.5em;
+}
+a.navbar-brand{
+  padding: 0;
+}
+nav.navbar{
+  height: 61px;
+  background-color: white;
+  margin-bottom: 0px;
+}
+div.navbar-collapse{
+  margin-top: 4px;
+  background-color: white;
+  margin-left: -15px !important;
+  margin-right: -15px !important;
+}
+div.navbar-header{
+  height: 61px;
+}
+li > a:hover{
+  color: #29A7F0 !important;
+}
+ol.breadcrumb{
+  background-color: transparent;
+}
+/*媒体查询*/
+@media screen and (max-width: 768px) {
+  div.navbar-collapse{
+    margin-top: -2px;
+  }
+}

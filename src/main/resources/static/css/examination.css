@@ -1,0 +1,47 @@
+ul{
+	padding-left: 0;
+}
+#company-info ul li,
+#month-consumption ul li,
+#success ul li
+{
+	list-style: none;
+	display: inline-block;
+}
+
+
+#company-info{
+	margin-top: 20px;
+}
+
+#company-info ul li{
+	display: inline-block;
+	margin-right: 40px;
+}
+
+#month-consumption{
+	margin-top: 40px;
+	margin-bottom: 40px;
+}
+
+#month-consumption li{
+	margin-right: 40px;
+}
+
+#success{
+	margin-top: 20px;
+}
+
+#success li{
+	margin-right: 40px;
+}
+
+#all-examination{
+	margin-top: 20px;
+}
+
+.number{
+	text-decoration: underline;
+	color: #0d5cb4;
+}
+
