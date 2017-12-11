@@ -3,6 +3,7 @@ package com.example.huzhou.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.example.huzhou.entity.*;
 import com.example.huzhou.mapper.test1.UserDao;
+import com.example.huzhou.mapper.test1.UserOwnerDao;
 import com.example.huzhou.service.PowerInfoService;
 import com.example.huzhou.service.PowerInfoServiceDH;
 import com.example.huzhou.service.UserOwnerService;
@@ -32,6 +33,14 @@ public class UserOwnerController {
     UserDao userDao;
     @Autowired
     PowerInfoService powerInfoService;
+
+    @Autowired
+    UserOwnerDao userOwnerDao;
+    @RequestMapping("/todayList")
+    @ResponseBody
+    public  List<PowerListInfo> getTodayList(){
+        return  userOwnerDao.selectPowerListInfo();
+    }
 
     @RequestMapping("/getTop5Company")
     @ResponseBody
@@ -192,7 +201,6 @@ public class UserOwnerController {
 
     // 管理页面上的能耗列表
     @ResponseBody
-    @RequestMapping("/todayList")
     public String getConsumptionByToday() {
         List<BasePowerInfo> infos = powerInfoService.getConsumptionByToday();
         List<Map<String, String>> list = new ArrayList<>();

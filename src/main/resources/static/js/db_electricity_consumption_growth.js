@@ -1,5 +1,4 @@
  function showChartBZT() {
-        // alert($("#companyName").val());
         var  dateInfo = $("#queryTime").val()+"-"+$("#queryMonth").val()+"-01";
         // console.log("yue:"+$("#companyName").val());
         var acodeStr = $("#companyName").val().split(" ");
@@ -85,4 +84,3 @@
      })
 
      }
- // showChartBZT();

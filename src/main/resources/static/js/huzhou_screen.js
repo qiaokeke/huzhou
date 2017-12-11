@@ -19,14 +19,12 @@ $(function () {
     showEnergyProportion();
     showUserEnergyProportion();
     chartOne();
-    // setInterval("numChange();", 5000);
     bannerPie();
     bannerDashboard();
-    // voltage_current();
     showWE();
     getCoal();
     getConsumptionSort();
-    // getConsumption();/
+    getConsumptionTop5()
 
     /*窗口变化时重绘*/
     var reset = setTimeout(function () {
@@ -103,7 +101,7 @@ function chartOne() {
         xAxis: {
             type: 'category',
             boundaryGap: false,
-            data: ['五月', '六月', '七月']
+            data: ['八月', '九月', '十月','十一月','十二月']
         },
         yAxis: [{
             type: 'value',
@@ -284,28 +282,41 @@ function getConsumptionSort() {
         success: function (myJson) {
             for (var i = 0; i < myJson.length; i++) {
                 var index = i + 1;
-               $("#cons").append('<tr class=\"text-center\"><td><span class=\"badge\">'+index+'</span></td><td>'+myJson[i].eName+'</td><td>'+myJson[i].consumption+'</td><td>'+myJson[i].water+'</td></tr>');
+                $("#cons").append('<tr class=\"text-center\"><td><span class=\"badge\">' + index + '</span></td><td>' + myJson[i].eName + '</td><td>' + myJson[i].consumption + '</td><td>' + myJson[i].water + '</td></tr>');
             }
+        }
+    })
+}
+
+function getConsumptionTop5() {
+    $.ajax({
+        url: '/company/getTop5Company',
+        dataType: 'json',
+        success: function (myJson) {
+            // for (var i = 0; i < myJson.length; i++) {
+            //     var index = i + 1;
+            //    $("#cons").append('<tr class=\"text-center\"><td><span class=\"badge\">'+index+'</span></td><td>'+myJson[i].eName+'</td><td>'+myJson[i].consumption+'</td><td>'+myJson[i].water+'</td></tr>');
+            // }
             // $("#needWrap").wrap('<marquee id=\"affiche\" align=\"left\" behavior=\"scroll\" direction=\"up\" width=\"100%\" hspace=\"50\" vspace=\"20\" loop=\"-1\" scrollamount=\"3\" scrolldelay=\"100\" onMouseOut=\"this.start()\" onMouseOver=\"this.stop()\"></marquee>');
             //能耗榜单前五名
             myChart.setOption({
                 series: [{
                     name: '',
                     data: [{
-                        name: "NO.5 " + myJson[4].eName,
-                        value: myJson[4].consumption
+                        name: "NO.5 " + myJson[4].companyName,
+                        value: myJson[4].pZXYGDN
                     }, {
-                        name: "NO.4 " + myJson[3].eName,
-                        value: myJson[3].consumption
+                        name: "NO.4 " + myJson[3].companyName,
+                        value: myJson[3].pZXYGDN
                     }, {
-                        name: "NO.3 " + myJson[2].eName,
-                        value: myJson[2].consumption
+                        name: "NO.3 " + myJson[2].companyName,
+                        value: myJson[2].pZXYGDN
                     }, {
-                        name: "NO.2 " + myJson[1].eName,
-                        value: myJson[1].consumption
+                        name: "NO.2 " + myJson[1].companyName,
+                        value: myJson[1].pZXYGDN
                     }, {
-                        name: "NO.1 " + myJson[0].eName,
-                        value: myJson[0].consumption
+                        name: "NO.1 " + myJson[0].companyName,
+                        value: myJson[0].pZXYGDN
                     }]
                 }]
             });
@@ -957,7 +968,7 @@ function showWE() {
                 type: 'value',
                 name: '用水量',
                 min:0,
-                max:1000,
+                max:10,
                 position: 'left',
                 axisLabel: {
                     formatter: '{value} 立方米'

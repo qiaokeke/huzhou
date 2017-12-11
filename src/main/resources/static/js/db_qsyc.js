@@ -1,4 +1,6 @@
 $(function () {
+         var d = new Date();
+         var thisMonth = d.getMonth()+1;
         /*企业能耗的点击事件*/
         var data_consition = [0, 0, 0, 0, 0,0,0];
         var myChart = echarts.init(document.getElementById('qsyc'));
@@ -11,7 +13,7 @@ $(function () {
             },
             legend: {
                 top:30,
-                data:['湖州舒乐网络科技有限公司']
+                data:['湖州三盟纺织科技有限公司']
             },
             grid: {
                 left: '3%',
@@ -38,87 +40,24 @@ $(function () {
                 axisLabel : {
                     formatter: '{value} 千瓦时'
                 }
-//                splitNumber:20 //总量分成多少份  最大值会自动获取
             },
             series: [
                 {
-                    name:'湖州舒乐网络科技有限公司',
+                    name:'湖州三盟纺织科技有限公司',
                     type:'line',
-//                    stack: '总量',
-                    data:[0, 0, 0, 0, 0, 0,0]
+                    data:[0, 0, 0, 0, 0, 0, 0]
                 }
             ]
         };
         myChart.setOption(option);
-
             $.ajax({
                 type: 'POST',
                 dataType: 'json',
                 async: true,
-                url: '/analysis/state?aCode=A1',
+                url: '/analysis/state?aCode=B1&time='+d.getFullYear()+'-'+thisMonth+'-'+d.getDate(),
                 success: function(data) {
-                    if(JSON.stringify(data) == '[]'){
+                    if(JSON.stringify(data) === '[]') {
                         console.log("用电状态趋势json请求成功，但该公司暂无数据！");
-                        return 0;
-                    }
-                    //处理时间
-                    for(var index in data){
-                        var timeStr = data[index].time.split(" ");
-                        data[index].time = timeStr[0];
-                        data[index].time = new Date(data[index].time+'').getDay();
-                    }
-                    //装入数据
-                    for (var i = 0; i<5;i++) {
-                        data_consition[0] = data[0].electricWeekCon;
-                    }
-                    // data_consition[5].value = data[5].electricWeekCon;  //读取并设置预计值
-                    data_consition[5].value = 20;
-                    console.log("用电状态：");
-                    for (var i = 0; i<5;i++) {
-                        console.log(data_consition[i]);
-                    }
-                    //表格重新绘制
-                    myChart.setOption({
-                        series: [
-                            {
-                                name:'湖州舒乐网络科技有限公司',
-                                data:data_consition
-                            }
-                        ]
-                    });
-                },
-                error: function() {
-                    console.log("用电状态及趋势json信息请求失败");
-                }
-            });
-        $("#click_qs").click(function(){
-            data_consition = [0, 0, 0, 0, 0,0,0];
-            var d = new Date();
-            var acodeStr = $("#qsComName").val().split(" ");
-            var acode = acodeStr[0];
-            var month = d.getMonth()+1;
-            var setUrl = '/analysis/state?aCode='+acode+'&time='+d.getFullYear()+'-'+month+'-'+d.getDate();
-            console.log("url: "+setUrl);
-            $.ajax({
-                type: 'POST',
-                dataType: 'json',
-                async: true,
-                url: setUrl,
-                success: function(data) {
-                    if(JSON.stringify(data) === '[]'){
-                        console.log("用电状态趋势json请求成功，但该公司暂无数据！");
-                        myChart.setOption({
-                            legend: {
-                                top:30,
-                                data:[acodeStr[1]]
-                            },
-                            series: [
-                                {
-                                    name:acodeStr[1],
-                                    data:[0,0,0,0,0,0,0]
-                                }
-                            ]
-                        });
                         return 0;
                     }
                     //处理时间
@@ -136,8 +75,73 @@ $(function () {
                             data_consition[6] = data[i].electricWeekCon;
                         }
                     }
-                    data_consition[6] = 0; //为了应付假数据
-                    console.log("用电状态："+data_consition);
+                    //表格重新绘制
+                    myChart.setOption({
+                        series: [
+                            {
+                                name:'湖州三盟纺织科技有限公司',
+                                data:data_consition
+                            }
+                        ]
+                    });
+                },
+                error: function() {
+                    console.log("用电状态及趋势json信息请求失败");
+                }
+            });
+        $("#click_qs").click(function(){
+            data_consition = [0, 0, 0, 0, 0,0,0];
+            var acodeStr = $("#qsComName").val().split(" ");
+            var acode = acodeStr[0];
+            var setUrl = '/analysis/state?aCode='+acode+'&time='+d.getFullYear()+'-'+thisMonth+'-'+d.getDate();
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                async: true,
+                url: setUrl,
+                success: function(data) {
+                    if(JSON.stringify(data) === '[]'){
+                        nullData();
+                        console.log("用电状态趋势json请求成功，但该公司暂无数据！");
+                        myChart.setOption({
+                            legend: {
+                                top:30,
+                                data:[acodeStr[1]]
+                            },
+                            series: [
+                                {
+                                    name:acodeStr[1],
+                                    data:[0,0,0,0,0,0,0]
+                                }
+                            ]
+                        });
+                        return 0;
+                    }
+                    //判断是否全为0
+                    var ydztIsNull = true;
+                    for(var i in data){
+                        if(parseFloat(data[i].electricWeekCon) != 0){
+                            ydztIsNull = false;
+                        }
+                    }
+                    if(ydztIsNull ==true){
+                        nullData();
+                    }
+                    //处理时间
+                    for(var index in data){
+                        var timeStr = data[index].time.split(" ");
+                        data[index].time = timeStr[0];
+                        data[index].time = new Date(data[index].time+'').getDay();
+                    }
+                    //装入数据
+                    for (var i in data) {
+                        if(data[i].time != 0){
+                            data_consition[data[i].time-1] = data[i].electricWeekCon;
+                        }
+                        else{
+                            data_consition[6] = data[i].electricWeekCon;
+                        }
+                    }
                     //表格重新绘制
                     myChart.setOption({
                         legend: {

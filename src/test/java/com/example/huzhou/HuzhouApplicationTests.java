@@ -1,9 +1,11 @@
 package com.example.huzhou;
 
 import com.example.huzhou.entity.PowerInfo;
+import com.example.huzhou.entity.PowerListInfo;
 import com.example.huzhou.entity.PowerTotalInfo;
 import com.example.huzhou.entity.WaterInfo;
 import com.example.huzhou.mapper.test1.PowerInfoDao;
+import com.example.huzhou.mapper.test1.UserOwnerDao;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -51,6 +53,17 @@ public class HuzhouApplicationTests {
 		logger.info(String.valueOf(powerTotalInfoList.size()));
 		for(PowerTotalInfo powerTotalInfo:powerTotalInfoList){
 			logger.info(powerTotalInfo.toString());
+		}
+	}
+
+	@Autowired
+	UserOwnerDao userOwnerDao;
+	@Test
+	public void testtodayList(){
+		List<PowerListInfo> powerListInfoList = userOwnerDao.selectPowerListInfo();
+		logger.info(String.valueOf(powerListInfoList.size()));
+		for(PowerListInfo powerListInfo:powerListInfoList){
+			logger.info(powerListInfo.toString());
 		}
 	}
 

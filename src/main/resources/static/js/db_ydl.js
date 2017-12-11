@@ -46,6 +46,7 @@ $("#startdate").datetimepicker({ format: 'Y-m-d', timepicker: false });
 $("#enddate").datetimepicker({ format: 'Y-m-d', timepicker: false });
 
     $(function (){
+        var thisDay = new Date();
         var data_buy = [0,0,0,0,0,0,0,0,0,0,0,0];
         var data_pay = [0,0,0,0,0,0,0,0,0,0,0,0];
 
@@ -141,8 +142,7 @@ $("#enddate").datetimepicker({ format: 'Y-m-d', timepicker: false });
             if(!click_qyydl){
                 var acodeStr = $("#ydlCom").val().split(" ");
                 var acode = acodeStr[0];
-                var setUrl =  '/analysis/info?aCode='+acode;
-                console.log("url: "+setUrl);
+                var setUrl =  '/analysis/info?aCode='+acode+"&time="+thisDay.getFullYear()+"-"+parseInt(thisDay.getMonth()+1)+"-"+thisDay.getDate();
             $.ajax({
                 type: 'POST',
                 dataType: 'json',
@@ -158,8 +158,6 @@ $("#enddate").datetimepicker({ format: 'Y-m-d', timepicker: false });
                     for (var index in data) {
                         data_pay[data[index].time - 1] = data[index].electricValue;
                     }
-                    console.log("用电量："+data_pay);
-                    console.log("购电量："+data_buy);
                     //表格重新绘制
                     app.hideLoading();
                     app.setOption({
@@ -202,14 +200,17 @@ $("#enddate").datetimepicker({ format: 'Y-m-d', timepicker: false });
             data_pay = [0,0,0,0,0,0,0,0,0,0,0,0];
             var acodeStr = $("#ydlCom").val().split(" ");
             var acode = acodeStr[0];
-            var setUrl =  '/analysis/info?aCode='+acode;
-            console.log("url: "+setUrl);
+            var setUrl =  '/analysis/info?aCode='+acode+"&time="+thisDay.getFullYear()+"-"+parseInt(thisDay.getMonth()+1)+"-"+thisDay.getDate();;
             $.ajax({
                 type: 'POST',
                 dataType: 'json',
                 async: true,
                 url:setUrl,
                 success: function(data) {
+                    if(JSON.stringify(data) == '[]'){
+                        nullData();
+                        console.log("json请求成功，但该公司暂无数据！");
+                    }
                     //处理时间
                     for(var p in data){
                         var month =data[p].time.split("-");
@@ -219,8 +220,6 @@ $("#enddate").datetimepicker({ format: 'Y-m-d', timepicker: false });
                     for (var index in data) {
                         data_pay[data[index].time - 1] = data[index].electricValue;
                     }
-                    console.log("用电量："+data_pay);
-                    console.log("购电量："+data_buy);
                     //表格重新绘制
                     app.hideLoading();
                     app.setOption({

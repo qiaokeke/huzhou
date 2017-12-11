@@ -47,7 +47,6 @@ $(function (){
                             position: 'insideRight'
                         }
                     },
-                    // data: [320, 302, 301, 334, 390, 330, 320]
                     data:data_tip
                 },
                 {
@@ -60,7 +59,6 @@ $(function (){
                             position: 'insideRight'
                         }
                     },
-                    // data: [120, 132, 101, 134, 90, 230, 210]
                     data: data_peak
                 },
                 {
@@ -73,7 +71,6 @@ $(function (){
                             position: 'insideRight'
                         }
                     },
-                    // data: [220, 182, 191, 234, 290, 330, 310]
                     data: data_valley
                 },
                 {
@@ -86,7 +83,6 @@ $(function (){
                             position: 'insideRight'
                         }
                     },
-                    // data: [150, 212, 201, 154, 190, 330, 410]
                     data: data_total
                 }
 
@@ -104,7 +100,7 @@ $(function (){
                     type: 'POST',
                     dataType: 'json',
                     async: true,
-                    url: '/analysis/nenghao?aCode=A1'+'&time='+d.getFullYear()+'-'+month+'-'+d.getDate(),
+                    url: '/analysis/nenghao?aCode=B1'+'&time='+d.getFullYear()+'-'+month+'-'+d.getDate(),
                     success: function(data) {
                         //处理时间
                         for(var index in data){
@@ -127,10 +123,6 @@ $(function (){
                                 data_total[6] = data[index].total;
                             }
                         }
-                        console.log("尖能耗："+data_tip);
-                        console.log("峰能耗："+data_peak);
-                        console.log("谷能耗："+data_valley);
-                        console.log("总能耗："+data_total);
                         //表格重新绘制
                         mChart1.hideLoading();
                         mChart1.setOption({
@@ -171,13 +163,17 @@ $(function (){
         var d = new Date();
         var month = d.getMonth()+1;
         var setUrl = '/analysis/nenghao?aCode='+acode+'&time='+d.getFullYear()+'-'+month+'-'+d.getDate();
-        console.log("url:"+ setUrl);
         $.ajax({
             type: 'POST',
             dataType: 'json',
             async: true,
             url: setUrl,
             success: function(data) {
+                //数据为空
+                if(JSON.stringify(data) == '[]'){
+                    nullData();
+                    console.log("json请求成功，但该公司暂无数据！");
+                }
                 //处理时间
                 for(var index in data){
                     var timeStr = data[index].time.split(" ");
@@ -200,10 +196,6 @@ $(function (){
                     }
 
                 }
-                console.log("尖能耗："+data_tip);
-                console.log("峰能耗："+data_peak);
-                console.log("谷能耗："+data_valley);
-                console.log("总能耗："+data_total);
                 //表格重新绘制
                 mChart1.hideLoading();
                 mChart1.setOption({
@@ -239,7 +231,6 @@ $(function (){
         var queryQY = document.getElementById("name").value; //企业名称
         var queryTime_1 = document.getElementById("startdate").value;  //开始日期
         var queryTime_2 = document.getElementById("enddate").value;    //结束日期
-        // alert('提交数据为：'+"行业="+queryHY+"； 企业="+queryQY+"； 开始时间="+queryTime_1+"； 结束时间="+queryTime_2) ;
     }
 
 // 开始时间不能晚于结束时间
@@ -288,8 +279,6 @@ $("#enddate").datetimepicker({ format: 'Y-m-d', timepicker: false });
             $("#name").empty();//首先清空select现在有的内容
             $("#name").append("<option selected='selected'  value=0>请选择..</option>");
             for (var i = 0; i < 10; i++) {
-//         var item = table[i];
-                // var option = $("<option  value="+item.id+">"+item.name+"</option>");
                 $("#name").append("<option  value=" + i + ">" + i + "</option>");
             }
         });

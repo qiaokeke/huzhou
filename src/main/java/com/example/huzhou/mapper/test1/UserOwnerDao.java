@@ -1,6 +1,7 @@
 package com.example.huzhou.mapper.test1;
 
 import com.example.huzhou.entity.PowerInfo;
+import com.example.huzhou.entity.PowerListInfo;
 import com.example.huzhou.entity.UserOwner;
 import com.example.huzhou.entity.WaterInfo;
 import org.apache.ibatis.annotations.Param;
@@ -12,6 +13,41 @@ import java.util.List;
  * Created by Raytine on 2017/9/2.
  */
 public interface UserOwnerDao {
+
+    @Select({
+         "SELECT\n" +
+                 "\tAH_HARDWARE_ID AS id,\n" +
+                 "\ttbl_area.A_ENAME AS eName,\n" +
+                 "\ttbl_power_info_v2.P_TIME AS time,\n" +
+                 "\ttbl_power_info_v2.P_A_DIANYA AS dianYa,\n" +
+                 "\ttbl_power_info_v2.P_A_DIANLIU AS dianLiu,\n" +
+                 "\ttbl_power_info_v2.P_ZXYGDN AS zdn,\n" +
+                 "\ttbl_power_info_v2.P_HXYGGL AS yggl,\n" +
+                 "\ttbl_power_info_v2.P_HXGLYS AS glys,\n" +
+                 "\ttbl_power_info_v2.P_BY_HKvarhG AS gdn,\n" +
+                 "\ttbl_power_info_v2.P_BY_HKvarhF AS fdn,\n" +
+                 "\ttbl_power_info_v2.P_BY_HKvarhJ AS jdn,\n" +
+                 "\ttbl_power_info_v2.P_BY_HKvarhP AS pdn,\n" +
+                 "\ttbl_power_info_v2.P_HXYGGL AS zgl\n" +
+                 "FROM\n" +
+                 "\ttbl_area_hardware\n" +
+                 "LEFT JOIN tbl_area ON tbl_area.A_CODE = tbl_area_hardware.AH_AREA_ID\n" +
+                 "LEFT JOIN tbl_power_info_v2 ON tbl_power_info_v2.P_CODE = tbl_area_hardware.AH_HARDWARE_ID\n" +
+                 "AND tbl_power_info_v2.P_TIME IN (\n" +
+                 "\tSELECT\n" +
+                 "\t\tMAX(tbl_power_info_v2.P_TIME)\n" +
+                 "\tFROM\n" +
+                 "\t\ttbl_power_info_v2\n" +
+                 "\tGROUP BY\n" +
+                 "\t\ttbl_power_info_v2.P_CODE\n" +
+                 ")\n" +
+                 "GROUP BY\n" +
+                 "\tid\n" +
+                 "ORDER BY\n" +
+                 "\tid"
+    })
+    List<PowerListInfo> selectPowerListInfo();
+
 
     List<UserOwner> selectCompanyNameById(int userid);
 //    @Select("SELECT AH_HARDWARE_ID FROM tbl_area_hardware WHERE AH_AREA_ID = #{code}")

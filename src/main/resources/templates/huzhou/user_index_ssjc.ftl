@@ -334,8 +334,13 @@
     }
     </script>
     <script type="text/javascript">
-    <!--加载导航条-->
     $(function() {
+        //让下拉框显示当前年月份
+        var thisdate = new Date();
+        var thisMonth = thisdate.getMonth()+1;
+        var thisYear = thisdate.getFullYear();
+        $("#month option:nth-child("+thisMonth+")").attr('selected','selected');
+        $("#year option[value="+thisYear+"]").attr('selected','selected');
         /*加载导航条*/
         $("#nav").load("nav.html");
         var params;
@@ -681,7 +686,17 @@
                                 }
                             },
                             zlevel: 1
-                        },
+                        },{
+                            type: 'heatmap',
+                            coordinateSystem: 'calendar',
+                            data: data,
+                            symbolSize: 1,
+                            itemStyle: {
+                                normal: {
+                                    color: '#fff'
+                                }
+                            }
+                        }
                     ]
                 };
                 myChart.hideLoading();

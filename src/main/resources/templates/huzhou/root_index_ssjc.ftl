@@ -9,6 +9,9 @@
     <script src="/static/js/echarts/echarts-liquidfill.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
     <script src="/static/js/echarts/echartGL.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/layer.css" />
+    <script src="/static/js/layer.js"></script>
+    <script src="/static/js/alert_null_data.js"></script>
     <link href="/static/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
     <link rel="icon" href="/static/picture/logo.ico" />
     <link rel="stylesheet" type="text/css" href="/static/css/nav/nav-style.css" />
@@ -16,6 +19,7 @@
     <link href="/static/css/main.css" type="text/css" rel="stylesheet" />
     <link href="/static/css/font-awesome.min.css" type="text/css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="/static/css/calendar.css" />
+
     <!--新增导航样式-->
     <link href="/static/css/nav/newmain.css" rel="stylesheet" />
     <style type="text/css">
@@ -122,7 +126,7 @@
                                             <option value="06">6</option>
                                             <option value="07">7</option>
                                             <option value="08">8</option>
-                                            <option value="09" selected="selected">9</option>
+                                            <option value="09">9</option>
                                             <option value="10">10</option>
                                             <option value="11">11</option>
                                             <option value="12">12</option>
@@ -304,7 +308,6 @@
     </div>
 </div>
 <div id="footer-in"><#include "footer_1.html"></div>
-<script type="text/javascript" src="/static/js/calendar.js"></script>
 <script>
     //获取url上的参数
     var urlStr =  decodeURI(window.location.href);
@@ -364,11 +367,15 @@
 <script type="text/javascript">
     <!--加载导航条-->
     $(function() {
+        //让下拉框显示当前年月份
+        var thisdate = new Date();
+        var thisMonth = thisdate.getMonth()+1;
+        var thisYear = thisdate.getFullYear();
+        $("#month option:nth-child("+thisMonth+")").attr('selected','selected');
+        $("#year option[value="+thisYear+"]").attr('selected','selected');
         /*加载导航条*/
         var params;
         var value = GetArgsFromHref(window.location.href, params);
-        //        alert("点击"+ value);
-        //        $("#footer-in").load("footer.html");
     });
     /**/
 
@@ -445,7 +452,7 @@
                     type: 'value',
                     name: '用水量',
                     min:0,
-                    max:1000,
+                    max:10,
                     position: 'left',
                     axisLabel: {
                         formatter: '{value} 立方米'
@@ -493,9 +500,6 @@
                             data_power[myJson[i].time - 1] = myJson[i].electric;
                         }
                     }
-                    console.log("用水量 :" + data_water);
-                    console.log("用电量 : "+ data_power);
-                    console.log("url: "+setWEUrl);
                     WEChart.hideLoading();
                     WEChart.setOption({
 //                        yAxis: [
@@ -555,9 +559,6 @@
             }
         }
         dateRange = [s, e];
-        // console.log(s);
-        // console.log(e);
-        // console.log(dateRange);
         var ClaChart = echarts.init(document.getElementById('calendar1'));
         ClaChart.showLoading();
 
@@ -577,7 +578,6 @@
                 async: false,
                 url:calendarUrl,
                 success: function(myJson) {
-                    console.log("分时日历url："+calendarUrl);
                     //处理时间
                     for(var i in myJson){
                         var d = myJson[i].time.split("-");
@@ -592,17 +592,11 @@
                         var data = [];
                         for (var time = date; time < end; time += dayTime) {
                             data.push([
-                                echarts.format.formatTime('yyyy-MM-dd', time),
-                                // Math.floor(Math.random() * 1000)
-                                0
-                            ]);
-                            // console.log(echarts.format.formatTime('yyyy-MM-dd', time));
+                                echarts.format.formatTime('yyyy-MM-dd', time), 0]);
                         }
                         for(var index in myJson){
                             data[myJson[index].time-1][1] = myJson[index].timeConsumption;
-                            console.log(data[myJson[index].time-1][1]);
                         }
-                        console.log(data);
                         return data;
                     }
 
@@ -618,7 +612,10 @@
                             }
                         },
                         tooltip: {
-                            trigger: 'item'
+                            trigger: 'item',
+                            formatter: function (params) {
+                                return params.value[0]+ '  '+ '能耗: '+ params.value[1];
+                            }
                         },
                         legend: {
                             top: '30',
@@ -675,7 +672,7 @@
                         }],
                         series: [{
                             name: '能耗',
-                            type: 'scatter',
+                            type: 'effectScatter',
                             coordinateSystem: 'calendar',
                             data: data,
                             /*随机获取scatter的大小*/
@@ -716,7 +713,17 @@
                                     }
                                 },
                                 zlevel: 1
-                            },
+                            },{
+                                type: 'heatmap',
+                                coordinateSystem: 'calendar',
+                                data: data,
+                                symbolSize:1,
+                                itemStyle: {
+                                    normal: {
+                                        color: '#fff'
+                                    }
+                                }
+                            }
                         ]
                     };
                     ClaChart.hideLoading();
@@ -734,13 +741,6 @@
                 //分时能耗
                 var data_timeConsumption = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
                 var all_consumption = 0;
-//            function data() {
-//                var d = [];
-//                for (var i = 0; i < 24; i++) {
-//                    d.push({ name: i + '~' + (i + 1), value: Math.random() * 100 });
-//                }
-//                return d;
-//            }
                 option1 = {
                     title: {
                         text: params.value[0],
@@ -932,8 +932,6 @@
                                 all_consumption += parseInt(data[index].timeConsumption);
                             }
                         }
-                        console.log("url: "+getFenUrl);
-                        console.log("当天分时能耗："+data_timeConsumption);
                         //表格重新绘制
                         useage.hideLoading();
                         useage.setOption({
@@ -1055,25 +1053,6 @@
                 }
             ]
         };
-
-        /*setInterval(function() {
-
-            if (percent == 100) {
-                percent = 100;
-            } else {
-                ++percent;
-            }
-            myChart.setOption({
-                title: {
-                    text: percent + ' '
-                },
-                series: [{
-                    name: 'main',
-                    data: getData()
-                }]
-            })
-
-        }, 2000);*/
         powerChart.hideLoading();
         powerChart.setOption(option);
 
@@ -1103,9 +1082,7 @@
         };
         waterChart.hideLoading();
         waterChart.setOption(option);
-        console.log('/ssjc/target?aCode='+pList[0]);
         $.ajax({
-//            url:'/ssjc/target?aCode='+pList[0],
             url:'/ssjc/target',
             dataType:'json',
             success: function(myJson){
@@ -1128,8 +1105,6 @@
                 if(myJson.elePercent == '只有当前月份的数据' || myJson.elePercent == '没有本月数据'|| myJson.elePercent == '未能读取到本月数据'){
 
                 }
-//                waterChart.hideLoading();
-//                waterChart.setOption(option);
             },
             error: function(){
                 console.log("能耗目标json获取失败！");
@@ -1263,6 +1238,7 @@
         for (k = 0; k < days.length; k++) {
             for (j = 0; j < hours.length; j++) {
                 myData.push([days[k], hours[j], data[i][2]]);
+                myData.push([days[k], hours[j], 0]);
                 i++;
             }
         }
@@ -1291,6 +1267,7 @@
             [5, 21, 4], [5, 22, 2], [5, 23, 0], [6, 0, 1], [6, 1, 0], [6, 2, 0], [6, 3, 0], [6, 4, 0], [6, 5, 0], [6, 6, 0], [6, 7, 0], [6, 8, 0], [6, 9, 0], [6, 10, 1],
             [6, 11, 0], [6, 12, 2], [6, 13, 1], [6, 14, 3], [6, 15, 4], [6, 16, 0], [6, 17, 0], [6, 18, 0], [6, 19, 0], [6, 20, 1], [6, 21, 2], [6, 22, 2], [6, 23, 6]
         ];
+        console.log("data"+data[0][1]);
         calendarWeek = echarts.init(document.getElementById("calendar-week"));
         calendarWeekOption = {
             tooltip: {},
@@ -1367,11 +1344,11 @@
     });
 </script>
 <script>
-    //    $("#footer").load("footer_new.html", function() {
     hasLogin =  true;
     userHero = 'root';
 </script>
 <script type="text/javascript" src="/static/js/nav.js"></script>
+<script type="text/javascript" src="/static/js/calendar.js"></script>
 </body>
 
 </html>

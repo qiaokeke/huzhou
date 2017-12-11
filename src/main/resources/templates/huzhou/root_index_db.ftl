@@ -3,9 +3,24 @@
 <head>
     <meta charset="UTF-8" />
     <title>大数据分析首页</title>
+    <!--把font文件夹丢进来就没错误了-->
+    <link href="/static/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="icon" href="/static/picture/logo.ico" />
+    <!--新增导航样式-->
+    <link href="/static/css/nav/newmain.css" rel="stylesheet" />
+    <link href="/static/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+    <link href="/static/css/main.css" type="text/css" rel="stylesheet" />
+    <link href="/static/css/font-awesome.min.css" type="text/css" rel="stylesheet" />
+    <link href="/static/css/dataTables.bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/static/css/nav/nav-style.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/layer.css" />
+    <!--日期选择器-->
+    <link type="text/css" href="/static/css/jquery.datetimepicker.css" rel="stylesheet" />
     <script src="/static/js/echarts/echarts.js"></script>
     <script src="/static/js/echarts/china.js"></script>
     <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/layer.js"></script>
+    <script src="/static/js/alert_null_data.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
     <script src="/static/js/common.js"></script>
 
@@ -18,19 +33,7 @@
     <!--  CUSTOM SCRIPTS  有冲突
      <script src="../../../js/custom.js"></script>-->
 
-    <!--把font文件夹丢进来就没错误了-->
-    <link href="/static/css/font-awesome.min.css" rel="stylesheet" />
-    <link rel="icon" href="/static/picture/logo.ico" />
-    <!--新增导航样式-->
-    <link href="/static/css/nav/newmain.css" rel="stylesheet" />
-    <link href="/static/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
-    <link href="/static/css/main.css" type="text/css" rel="stylesheet" />
-    <link href="/static/css/font-awesome.min.css" type="text/css" rel="stylesheet" />
-    <link href="/static/css/dataTables.bootstrap.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="/static/css/nav/nav-style.css" />
 
-    <!--日期选择器-->
-    <link type="text/css" href="/static/css/jquery.datetimepicker.css" rel="stylesheet" />
 
     <style type="text/css">
         a:link,a:visited{
@@ -223,7 +226,6 @@
             url: '/company/info',
             success: function(myJson) {
                 for(var index in myJson){
-                    console.log($("#queryQY").html());
                     $("#name").append("<option>"+myJson[index].code+" "+myJson[index].name+"</option>");
                     $("#companyName").append("<option>"+myJson[index].code+" "+myJson[index].name+"</option>");
                     $("#ydlCom").append("<option>"+myJson[index].code+" "+myJson[index].name+"</option>");

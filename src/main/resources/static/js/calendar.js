@@ -1,9 +1,23 @@
 var cellSize = [80, 70];
 var pieRadius = '10%';
-// 设定默认日历为8月
-var s = '2017-09-01';
-var e = '2017-10-01';
-var yearMonth = ['2017-09'];
+// 设定默认日历为当前年月
+var beginMonth,beginYear,endMonth,endYear;
+var thisTime = new Date();
+beginMonth = thisTime.getMonth() + 1;
+endYear = beginYear = thisTime.getFullYear();
+if(beginMonth < 9){
+    endMonth = "0"+parseInt(beginMonth+1);
+
+}else{
+    endMonth = beginMonth + 1;
+}
+if(beginMonth === 12){
+    endMonth = "01";
+    endYear = beginYear + 1;
+}
+var s = beginYear+"-"+beginMonth+"-01";
+var e = endYear+"-"+endMonth+"-01";
+var yearMonth = [beginYear+'-'+beginMonth];
 var a=0,b=0,c=0;
 var myChart = echarts.init(document.getElementById("calendar-container"));
 
@@ -13,7 +27,7 @@ urlStr = urlStr.substr(num+1); //取得所有参数
 var pList = urlStr.split("&"); //各个参数放到数组里
 var getP = pList[0].split('=');
 pList[0] = getP[1];
-gufengUrl = '/ssjc/gufengCalendar?aCode='+pList[0]+'&time=2017-09-1';
+gufengUrl = '/ssjc/gufengCalendar?aCode='+pList[0]+'&time=2017-12-1';
 
 function printCalendar() {
 
@@ -164,6 +178,5 @@ $("#findit").click(function() {
     e = $("#year").val() + "-" + (parseInt($("#month").val()) + 1) + "-01";
     yearMonth[0] = $("#year").val()+"-"+$("#month").val();
     myChart.clear();
-    console.log("url: "+gufengUrl);
     printCalendar();
 });
