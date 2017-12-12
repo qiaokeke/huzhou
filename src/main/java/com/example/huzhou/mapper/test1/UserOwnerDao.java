@@ -18,6 +18,7 @@ public interface UserOwnerDao {
          "SELECT\n" +
                  "\tAH_HARDWARE_ID AS id,\n" +
                  "\ttbl_area.A_ENAME AS eName,\n" +
+                 "tbl_area.A_CODE as aCode,"+
                  "\ttbl_power_info_v2.P_TIME AS time,\n" +
                  "\ttbl_power_info_v2.P_A_DIANYA AS dianYa,\n" +
                  "\ttbl_power_info_v2.P_A_DIANLIU AS dianLiu,\n" +

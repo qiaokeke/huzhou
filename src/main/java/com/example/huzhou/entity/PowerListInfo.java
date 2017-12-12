@@ -11,6 +11,7 @@ public class PowerListInfo {
     int id;
     float dianLiu;
     float dianYa;
+    String aCode;
     String eName;
     float zdn;
     float multiple;
@@ -26,10 +27,11 @@ public class PowerListInfo {
     public PowerListInfo() {
     }
 
-    public PowerListInfo(int id, float dianLiu, float dianYa, String eName, float zdn, float multiple, float yggl, float glys, float gdn, float fdn, float jdn, float pdn, float zgl, String time) {
+    public PowerListInfo(int id, float dianLiu, float dianYa, String aCode, String eName, float zdn, float multiple, float yggl, float glys, float gdn, float fdn, float jdn, float pdn, float zgl, String time) {
         this.id = id;
         this.dianLiu = dianLiu;
         this.dianYa = dianYa;
+        this.aCode = aCode;
         this.eName = eName;
         this.zdn = zdn;
         this.multiple = multiple;
@@ -67,10 +69,20 @@ public class PowerListInfo {
         this.dianYa = dianYa;
     }
 
-    public String geteName() {
-        return eName;
+    public String getaCode() {
+        if(aCode==null) aCode="";
+        return aCode;
     }
 
+    public void setaCode(String aCode) {
+        this.aCode = aCode;
+    }
+
+    public String geteName() {
+        if(eName==null) eName = "";
+
+        return getaCode()+":"+eName;
+    }
     public void seteName(String eName) {
         this.eName = eName;
     }
@@ -148,6 +160,8 @@ public class PowerListInfo {
     }
 
     public String getTime() {
+        if(time==null)
+            return "设备离线";
         return time;
     }
 
@@ -161,9 +175,10 @@ public class PowerListInfo {
                 "id=" + id +
                 ", dianLiu=" + dianLiu +
                 ", dianYa=" + dianYa +
-                ", eName=" + eName +
+                ", aCode='" + aCode + '\'' +
+                ", eName='" + eName + '\'' +
                 ", zdn=" + zdn +
-                ", multiple=" + "1" +
+                ", multiple=" + multiple +
                 ", yggl=" + yggl +
                 ", glys=" + glys +
                 ", gdn=" + gdn +

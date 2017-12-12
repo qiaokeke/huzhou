@@ -92,7 +92,7 @@ public class PowerInfoDetectController {
                         Map<String, String> mapELetric = new HashMap<>();
                         mapELetric.put("time", eletricSsjc.get(k).getpTime()); //应该是i+1
                         float e = eletricSsjc.get(k).getpBYKwhZ() - eletricSsjc.get(k - 1).getpBYKwhZ();
-                        System.out.println(e);
+                        //System.out.println(e);
                         if(e<=0){
                             e=0;
                         }
@@ -131,7 +131,9 @@ public class PowerInfoDetectController {
                         System.out.println(infoList.get(i));
                         map = new HashMap<>();
                         map.put("time", infoList.get(i).getpTime());
-                        map.put("timeConsumption", String.valueOf(ConstantUtil.DECIMAL_FORMAT.format(infoList.get(i).getpBYKwhZ() - infoList.get(i - 1).getpBYKwhZ())));
+                        float value = infoList.get(i).getpBYKwhZ() - infoList.get(i - 1).getpBYKwhZ();
+                        if(value<0) value=0;
+                        map.put("timeConsumption", String.valueOf(ConstantUtil.DECIMAL_FORMAT.format(value)));
                         list.add(map);
                     }
                     flag = false;
@@ -163,7 +165,9 @@ public class PowerInfoDetectController {
                     for (int i = 1; i < infoList.size(); i++) {
                         Map<String, String> map = new HashMap<>();
                         map.put("time", infoList.get(i).getpTime());
-                        map.put("timeConsumption", String.valueOf(ConstantUtil.DECIMAL_FORMAT.format(infoList.get(i).getpBYKwhZ() - infoList.get(i - 1).getpBYKwhZ())));
+                        float value = infoList.get(i).getpBYKwhZ() - infoList.get(i - 1).getpBYKwhZ();
+                        if(value<0) value=0;
+                        map.put("timeConsumption", String.valueOf(ConstantUtil.DECIMAL_FORMAT.format(value)));
                         list.add(map);
                     }
                     flag = false;
@@ -197,9 +201,15 @@ public class PowerInfoDetectController {
                     for (int i = 1; i < infoList.size(); i++) {
                         Map<String, String> map = new HashMap<>();
                         map.put("time", infoList.get(i).getpTime());
-                        map.put("tip", String.valueOf(ConstantUtil.DECIMAL_FORMAT.format(infoList.get(i).getpBYKwhJ() - infoList.get(i - 1).getpBYKwhJ()))); //尖
-                        map.put("peak", String.valueOf(ConstantUtil.DECIMAL_FORMAT.format(infoList.get(i).getpBYKwhF() - infoList.get(i - 1).getpBYKwhF()))); //峰
-                        map.put("valley", String.valueOf(ConstantUtil.DECIMAL_FORMAT.format(infoList.get(i).getpBYKwhG() - infoList.get(i - 1).getpBYKwhG()))); //谷
+                        float tipValue =infoList.get(i).getpBYKwhJ() - infoList.get(i - 1).getpBYKwhJ();
+                        if(tipValue<0)tipValue=0;
+                        float peakValue = infoList.get(i).getpBYKwhF() - infoList.get(i - 1).getpBYKwhF();
+                        if(peakValue<0)peakValue=0;
+                        float valleyValue = infoList.get(i).getpBYKwhG() - infoList.get(i - 1).getpBYKwhG();
+                        if(valleyValue<0)valleyValue=0;
+                        map.put("tip", String.valueOf(ConstantUtil.DECIMAL_FORMAT.format(tipValue))); //尖
+                        map.put("peak", String.valueOf(ConstantUtil.DECIMAL_FORMAT.format(peakValue))); //峰
+                        map.put("valley", String.valueOf(ConstantUtil.DECIMAL_FORMAT.format(valleyValue))); //谷
                         list.add(map);
                     }
                     return JSON.toJSONString(list);
