@@ -6,11 +6,14 @@ import com.example.huzhou.entity.PowerTotalInfo;
 import com.example.huzhou.entity.WaterInfo;
 import com.example.huzhou.mapper.test1.PowerInfoDao;
 import com.example.huzhou.mapper.test1.UserOwnerDao;
+import com.example.huzhou.util.BeiLvUtil;
+import com.example.huzhou.util.Utils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
@@ -47,6 +50,7 @@ public class HuzhouApplicationTests {
 		}
 
 	}
+
 	@Test
 	public void testTop5(){
 		List<PowerTotalInfo> powerTotalInfoList = powerInfoDao.selectTop5TotalPower();
@@ -66,6 +70,12 @@ public class HuzhouApplicationTests {
 			logger.info(powerListInfo.toString());
 		}
 	}
+
+
+	@Value("#{'${beilv}'.split(',')}")
+	public List<Integer> beilv;
+
+
 
 
 }

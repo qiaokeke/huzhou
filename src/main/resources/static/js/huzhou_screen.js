@@ -951,6 +951,26 @@ function showWE() {
         yAxis: [
             {
                 type: 'value',
+                name: '用水量',
+                // min:0,
+                // max:10,
+                position: 'left',
+                axisLabel: {
+                    formatter: '{value} 立方米'
+                },
+                axisLine: {
+                    lineStyle:{
+                        color:'#675bba'
+                    }
+                },
+                splitLine:{
+                    lineStyle:{
+                        color:'#675bba'
+                    }
+                }
+            },
+            {
+                type: 'value',
                 name: '用电量',
                 position: 'right',
 //                    min: 0,
@@ -961,34 +981,25 @@ function showWE() {
                 axisLine: {
                     lineStyle:{
                         color: '#d14a61'
-                }
-                }
-            },
-            {
-                type: 'value',
-                name: '用水量',
-                min:0,
-                max:10,
-                position: 'left',
-                axisLabel: {
-                    formatter: '{value} 立方米'
+                    }
                 },
-                axisLine: {
+                splitLine:{
                     lineStyle:{
-                        color:'#675bba'
+                        color: '#d14a61'
                     }
                 }
             }
-
         ],
         series: [{
             name: '用水量',
             type: 'bar',
+            yAxisIndex:0,
             data: data_water
         },
             {
                 name: '用电量',
                 type: 'bar',
+                yAxisIndex:1,
                 data: data_power
             }
         ]
@@ -1006,6 +1017,9 @@ function showWE() {
             dataType: 'json',
             url: setUrl,
             success: function (myJson) {
+                //重置清零
+                data_power = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+                data_water = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
                 //处理时间
                 for (var index in myJson) {
                     var timeStr = myJson[index].time.split(' ');
@@ -1014,7 +1028,8 @@ function showWE() {
                     myJson[index].time = parseInt(timeStr[0]);
                 }
                 for (var i in myJson) {
-                    if (myJson[i].water && myJson[i].time != 0) {
+                    //控制水的能耗在10以下
+                    if (myJson[i].water && myJson[i].time != 0 && myJson[i].water < 10) {
                         data_water[myJson[i].time - 1] = myJson[i].water;
                     }
                     else if (myJson[i].electric && myJson[i] != 0) {
@@ -1037,11 +1052,13 @@ function showWE() {
                     },
                     series: [{
                         name: '用水量',
-                        data: data_water
+                        data: data_water,
+                        yAxisIndex:0
                     },
                         {
                             name: '用电量',
-                            data: data_power
+                            data: data_power,
+                            yAxisIndex:1
                         }
                     ]
                 });

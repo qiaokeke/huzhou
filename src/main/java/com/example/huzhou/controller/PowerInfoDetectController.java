@@ -9,9 +9,12 @@ import com.example.huzhou.service.PowerInfoService;
 import com.example.huzhou.service.PowerInfoServiceDH;
 import com.example.huzhou.service.UserOwnerService;
 import com.example.huzhou.service.UserService;
+import com.example.huzhou.util.BeiLvUtil;
 import com.example.huzhou.util.ConstantUtil;
 import com.example.huzhou.util.JsonUtil;
 import com.example.huzhou.util.Utils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +39,7 @@ public class PowerInfoDetectController {
     @Autowired
     UserOwnerService userOwnerService;
 
+    Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @ResponseBody
     @RequestMapping("/water")//要根据公司的名称来判断
@@ -48,7 +52,6 @@ public class PowerInfoDetectController {
         List<WaterInfo> waterSsjc = powerInfoService.getWaterPerHour(category, aCode);
 
         if (waterSsjc != null && waterSsjc.size() != 0) {
-            System.out.println(waterSsjc.size()+"__________获取的数组长度");
             if (waterSsjc.size() == 1) {
                 Map<String, String> map = new HashMap<>();
                 map.put("time", waterSsjc.get(0).getTime());
@@ -96,7 +99,8 @@ public class PowerInfoDetectController {
                         if(e<=0){
                             e=0;
                         }
-                        mapELetric.put("electric", String.valueOf(e));
+                       // logger.info("k Pcode:"+eletricSsjc.get(k).getpCode());
+                        mapELetric.put("electric", String.valueOf(e* BeiLvUtil.BEILVTABLE[(int) pList.get(0)]));
                         list.add(mapELetric);
                     }
                     flag = false;

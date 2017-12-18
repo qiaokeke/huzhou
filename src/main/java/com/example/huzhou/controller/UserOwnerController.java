@@ -7,6 +7,7 @@ import com.example.huzhou.mapper.test1.UserOwnerDao;
 import com.example.huzhou.service.PowerInfoService;
 import com.example.huzhou.service.PowerInfoServiceDH;
 import com.example.huzhou.service.UserOwnerService;
+import com.example.huzhou.util.BeiLvUtil;
 import com.example.huzhou.util.ConstantUtil;
 import com.example.huzhou.util.Utils;
 import net.sf.json.JSONArray;
@@ -186,7 +187,7 @@ public class UserOwnerController {
             Map<String, String> map = new HashMap<>();
             map.put("time", info.getpTime());
             map.put("eName", userOwnerService.getEnameByPCode(info.getpCode()));
-            map.put("consumption", String.valueOf(ConstantUtil.DECIMAL_FORMAT.format(info.getpBYKwhZ())));//换算标准煤
+            map.put("consumption", String.valueOf(ConstantUtil.DECIMAL_FORMAT.format(info.getpBYKwhZ()* BeiLvUtil.BEILVTABLE[info.getpCode()])));//换算标准煤
             readings = getWaterValue(info.getpCode());
             map.put("water", String.valueOf(readings));
             list.add(map);
@@ -225,24 +226,6 @@ public class UserOwnerController {
             list.add(map);
         }
 
-
-      /*      for (int i = 1; i < infoDHZ.size(); i++) {
-                map.put("eName", eName);
-                map.put("time",infoDHJ.get(i).getReadTime());
-                map.put("dianLiu", ConstantUtil.DECIMAL_FORMAT.format(infoDHDIANLIU.get(i).getValueDn() - infoDHDIANLIU.get(i - 1).getValueDn()));
-                map.put("dianYa", ConstantUtil.DECIMAL_FORMAT.format(infoDHDIANYA.get(i).getValueDn() - infoDHDIANYA.get(i - 1).getValueDn()));
-//                map.put("yggl", ConstantUtil.DECIMAL_FORMAT.format(infoDHYGGL.get(i).getValueDn() - infoDHYGGL.get(i - 1).getValueDn()));
-//                map.put("zgl", ConstantUtil.DECIMAL_FORMAT.format(infoDHZGL.get(i).getValueDn() - infoDHZGL.get(i - 1).getValueDn()));
-//                map.put("glys", "0.0");
-//                map.put("pdn", ConstantUtil.DECIMAL_FORMAT.format(infoDHZGLYS.get(i).getValueDn() - infoDHZGLYS.get(i - 1).getValueDn()));
-//                map.put("zdn", ConstantUtil.DECIMAL_FORMAT.format(infoDHZ.get(i).getValueDn() - infoDHZ.get(i - 1).getValueDn()));
-//                map.put("jdn", ConstantUtil.DECIMAL_FORMAT.format(infoDHJ.get(i).getValueDn() - infoDHJ.get(i - 1).getValueDn()));
-//                map.put("fdn", ConstantUtil.DECIMAL_FORMAT.format(infoDHF.get(i).getValueDn() - infoDHF.get(i - 1).getValueDn()));
-//                map.put("gdn", ConstantUtil.DECIMAL_FORMAT.format(infoDHG.get(i).getValueDn() - infoDHG.get(i - 1).getValueDn()));
-                map.put("multiple","50");
-                list.add(map);
-            }*/
-
         return JSONObject.toJSONString(list);
     }
 
@@ -264,15 +247,22 @@ public class UserOwnerController {
     }
 
 
-    static class MapComparatorAsc implements Comparator<Map<String, String>> {
-        @Override
-        public int compare(Map<String, String> m1, Map<String, String> m2) {
-            Double v1 = Double.parseDouble(m1.get("consumption"));
-            Double v2 = Double.parseDouble(m2.get("consumption"));
-            if (v2 != 0) {
-                return v2.compareTo(v1);
-            }
-            return 0;
-        }
-    }
+     class MapComparatorAsc implements Comparator {
+
+         @Override
+         public int compare(Object o1, Object o2) {
+             Map<String,String> m1 = (Map<String, String>) o1;
+             Map<String,String> m2 = (Map<String, String>) o2;
+
+             float v1 = Float.parseFloat(m1.get("consumption"));
+             float v2 = Float.parseFloat(m2.get("consumption"));
+
+             if(v1>v2)
+                 return -1;
+             if (v1<v2)
+                 return 1;
+
+             return 0;
+         }
+     }
 }

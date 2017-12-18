@@ -7,6 +7,7 @@ import com.example.huzhou.entity.PowerInfoDH;
 import com.example.huzhou.service.PowerInfoService;
 import com.example.huzhou.service.PowerInfoServiceDH;
 import com.example.huzhou.service.UserOwnerService;
+import com.example.huzhou.util.BeiLvUtil;
 import com.example.huzhou.util.ConstantUtil;
 import com.example.huzhou.util.Utils;
 import org.apache.ibatis.annotations.Mapper;
@@ -118,6 +119,9 @@ public class PowerInfoAnalysisController {
             for (int j = 0; j < ConstantUtil.PCODE_LIST.length; j++) {
                 if ((int) object == ConstantUtil.PCODE_LIST[j]) {
                     List<PowerInfo> infoList = powerInfoService.getElectricState(category, (Integer) object,time);
+                    //去除为0的值
+
+
                     for (int i =1;i < infoList.size();i++) {
                         System.out.println(infoList.get(i));
                         Map<String ,String > map = new HashMap<>();

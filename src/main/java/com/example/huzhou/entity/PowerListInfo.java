@@ -1,5 +1,7 @@
 package com.example.huzhou.entity;
 
+import com.example.huzhou.util.BeiLvUtil;
+
 /**
  * @Author: qiao
  * @Description:
@@ -88,7 +90,7 @@ public class PowerListInfo {
     }
 
     public float getZdn() {
-        return zdn;
+        return zdn*getMultiple();
     }
 
     public void setZdn(float zdn) {
@@ -96,7 +98,7 @@ public class PowerListInfo {
     }
 
     public float getMultiple() {
-        return 1;
+        return BeiLvUtil.BEILVTABLE[id];
     }
 
     public void setMultiple(float multiple) {

@@ -1,5 +1,7 @@
 package com.example.huzhou.entity;
 
+import com.example.huzhou.util.BeiLvUtil;
+
 /**
  * @Author: qiao
  * @Description:
@@ -8,8 +10,10 @@ package com.example.huzhou.entity;
  * @Email: qiaokekeshu@163.com
  */
 public class PowerTotalInfo {
+    int pCode;
     String companyName;
     float pZXYGDN;
+
 
     public PowerTotalInfo() {
     }
@@ -18,6 +22,13 @@ public class PowerTotalInfo {
         this.companyName = companyName;
         this.pZXYGDN = pZCYGDN;
     }
+
+
+    public void setpCode(int pCode) {
+        this.pCode = pCode;
+    }
+
+
 
     public String getCompanyName() {
         return companyName;
@@ -28,7 +39,7 @@ public class PowerTotalInfo {
     }
 
     public float getpZXYGDN() {
-        return pZXYGDN;
+        return pZXYGDN* BeiLvUtil.BEILVTABLE[pCode];
     }
 
     public void setpZXYGDN(float pZCYGDN) {
@@ -38,8 +49,9 @@ public class PowerTotalInfo {
     @Override
     public String toString() {
         return "PowerTotalInfo{" +
+                "pCode=" + pCode +
                 ", companyName='" + companyName + '\'' +
-                ", pZXYGDN=" + pZXYGDN +
+                ", pZXYGDN=" + getpZXYGDN() +
                 '}';
     }
 }

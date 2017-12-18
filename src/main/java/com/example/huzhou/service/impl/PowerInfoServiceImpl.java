@@ -6,10 +6,27 @@ import com.example.huzhou.entity.PowerTotalInfo;
 import com.example.huzhou.entity.WaterInfo;
 import com.example.huzhou.mapper.test1.PowerInfoDao;
 import com.example.huzhou.service.PowerInfoService;
+import com.example.huzhou.util.BeiLvUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+
+
+
+ class ComparaPowerTotalInfo implements Comparator{
+
+    @Override
+    public int compare(Object o1, Object o2) {
+        PowerTotalInfo powerTotalInfo1 = (PowerTotalInfo) o1;
+        PowerTotalInfo powerTotalInfo2 = (PowerTotalInfo) o2;
+        if (powerTotalInfo1.getpZXYGDN()>powerTotalInfo2.getpZXYGDN())
+            return 1;
+        return 0;
+    }
+}
 
 /**
  * Created by Raytine on 2017/8/27.
@@ -19,9 +36,13 @@ public class PowerInfoServiceImpl implements PowerInfoService {
     @Autowired
     PowerInfoDao infoDao;
 
+
     @Override
     public List<PowerTotalInfo> getTop5TotalPowerInfo() {
-        return infoDao.selectTop5TotalPower();
+        List<PowerTotalInfo> powerTotalInfoList =  infoDao.selectTop5TotalPower();
+        ComparaPowerTotalInfo comparaPowerTotalInfo = new ComparaPowerTotalInfo();
+        Collections.sort(powerTotalInfoList,comparaPowerTotalInfo);
+        return powerTotalInfoList.subList(0,5);
     }
 
     @Override
@@ -78,9 +99,6 @@ public class PowerInfoServiceImpl implements PowerInfoService {
     public List<PowerInfo> getEletricSsjc(int pCode) {
         List<PowerInfo> list = infoDao.selectEletricSsjc(pCode);
         //float base = list.get(0).getpBYKwhZ();
-        for(PowerInfo powerInfo : list){
-            System.out.println(powerInfo);
-        }
         return list;
     }
 

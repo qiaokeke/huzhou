@@ -440,35 +440,46 @@
             yAxis: [
                 {
                     type: 'value',
+                    name: '用水量',
+//                    min:0,
+//                    max:10,
+                    position: 'left',
+                    axisLabel: {
+                        formatter: '{value} 立方米'
+                    },
+                    splitLine:{
+                        lineStyle:{
+                            color:"red"
+                        }
+                    }
+                },
+                {
+                    type: 'value',
                     name: '用电量',
                     position: 'right',
 //                    min: 0,
 //                    max: 2000,
                     axisLabel: {
                         formatter: '{value} KWH'
-                    }
-                },
-                {
-                    type: 'value',
-                    name: '用水量',
-                    min:0,
-                    max:10,
-                    position: 'left',
-                    axisLabel: {
-                        formatter: '{value} 立方米'
+                    },
+                    splitLine:{
+                        lineStyle:{
+                            color: '#2F4554'
+                        }
                     }
                 }
-
             ],
             series: [
                 {
                     name: '用水量',
                     type: 'bar',
+                    yAxisIndex:0,
                     data: data_water
                 },
                 {
                     name: '用电量',
                     type: 'bar',
+                    yAxisIndex:1,
                     data: data_power
                 }
             ]
@@ -493,7 +504,8 @@
                         myJson[index].time = parseInt(timeStr[0]);
                     }
                     for(var i in myJson){
-                        if(myJson[i].water && myJson[i].time != 0){
+                        //控制水的能耗为10以下
+                        if(myJson[i].water && myJson[i].time != 0 && myJson[i].water < 10){
                             data_water[myJson[i].time - 1] = myJson[i].water;
                         }
                         else if(myJson[i].electric && myJson[i] != 0){
@@ -502,23 +514,15 @@
                     }
                     WEChart.hideLoading();
                     WEChart.setOption({
-//                        yAxis: [
-//                            {
-//                                type: 'value',
-//                                name: '用水量',
-//                            },
-//                            {
-//                                type: 'value',
-//                                name: '用电量',
-//                            }
-//                        ],
                         series: [{
                             name: '用水量',
-                            data: data_water
+                            data: data_water,
+                            yAxisIndex:0
                         },
                             {
                                 name: '用电量',
-                                data: data_power
+                                data: data_power,
+                                yAxisIndex:1
                             }
                         ]
                     });

@@ -26,6 +26,7 @@ public interface PowerInfoDao {
      */
 
     @Select({"SELECT\n" +
+            "tbl_power_info_v2.P_CODE as pCode,"+
             "tbl_area.A_ENAME as companyName,\n" +
             "MAX(tbl_power_info_v2.P_ZXYGDN) as pZXYGDN\n" +
             "FROM\n" +
@@ -40,8 +41,8 @@ public interface PowerInfoDao {
             "GROUP BY\n" +
             "companyName\n" +
             "\n" +
-            "ORDER BY  pZXYGDN DESC\n" +
-            "LIMIT 5"})
+            "ORDER BY  pZXYGDN DESC\n"
+            })
     List<PowerTotalInfo> selectTop5TotalPower();
 
 
