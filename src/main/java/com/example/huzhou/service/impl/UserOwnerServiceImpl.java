@@ -1,6 +1,7 @@
 package com.example.huzhou.service.impl;
 
 import com.example.huzhou.entity.PowerInfo;
+import com.example.huzhou.entity.SsjcMapInfo;
 import com.example.huzhou.entity.UserOwner;
 import com.example.huzhou.entity.WaterInfo;
 import com.example.huzhou.mapper.test1.UserOwnerDao;
@@ -17,6 +18,12 @@ import java.util.List;
 public class UserOwnerServiceImpl implements UserOwnerService {
     @Autowired
     UserOwnerDao userOwnerDao;
+
+    @Override
+    public List<SsjcMapInfo> selectMapInfo() {
+        return userOwnerDao.selectMapInfo();
+    }
+
     @Override
     public List selectPcodeByAcode(String aCode) {
         return userOwnerDao.selectPcodeByAcode(aCode);

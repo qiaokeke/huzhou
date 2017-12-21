@@ -1,9 +1,6 @@
 package com.example.huzhou;
 
-import com.example.huzhou.entity.PowerInfo;
-import com.example.huzhou.entity.PowerListInfo;
-import com.example.huzhou.entity.PowerTotalInfo;
-import com.example.huzhou.entity.WaterInfo;
+import com.example.huzhou.entity.*;
 import com.example.huzhou.mapper.test1.PowerInfoDao;
 import com.example.huzhou.mapper.test1.UserOwnerDao;
 import com.example.huzhou.util.BeiLvUtil;
@@ -74,6 +71,12 @@ public class HuzhouApplicationTests {
 
 	@Value("#{'${beilv}'.split(',')}")
 	public List<Integer> beilv;
+
+	@Test
+	public void testMapInfo(){
+		List<SsjcMapInfo> ssjcMapInfoList = userOwnerDao.selectMapInfo();
+		logger.info(String.valueOf(ssjcMapInfoList.size()));
+	}
 
 
 

@@ -84,10 +84,20 @@ public class UserOwnerController {
         }
         return JSONObject.toJSONString(list);
     }
-
-    //拿到地图上的acode，去获取相应的水表电表，TODO
     @RequestMapping("/mapInfo")
     @ResponseBody
+    public List<Object> getSsjcMapInfo(){
+        List<Object> list = new ArrayList<>();
+        Map<String,Object> map = new HashMap<>();
+        List<SsjcMapInfo> ssjcMapInfoList = userOwnerService.selectMapInfo();
+        for (SsjcMapInfo ssjcMapInfo:ssjcMapInfoList){
+            map.put(ssjcMapInfo.getFactoryNumber(),ssjcMapInfo);
+        }
+        list.add(map);
+        return list;
+    }
+
+    //拿到地图上的acode，去获取相应的水表电表，TODO
     public String getMapInfo() {
         Subject curUser = SecurityUtils.getSubject();
         String userName = (String) curUser.getPrincipal();

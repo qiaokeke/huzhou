@@ -1,6 +1,7 @@
 package com.example.huzhou.service;
 
 import com.example.huzhou.entity.PowerInfo;
+import com.example.huzhou.entity.SsjcMapInfo;
 import com.example.huzhou.entity.UserOwner;
 import com.example.huzhou.entity.WaterInfo;
 import org.apache.ibatis.annotations.Param;
@@ -11,6 +12,8 @@ import java.util.List;
  * Created by Raytine on 2017/9/3.
  */
 public interface UserOwnerService {
+
+    List<SsjcMapInfo> selectMapInfo();
     List selectPcodeByAcode( String aCode);
     String getAcodeByPcode(int pCode);
     String selectAcodeByUserId(int userid);

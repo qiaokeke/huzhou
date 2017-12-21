@@ -1,5 +1,7 @@
 package com.example.huzhou.entity;
 
+import com.example.huzhou.util.BeiLvUtil;
+
 /**
  * Created by Raytine on 2017/9/4.
  */
@@ -9,6 +11,7 @@ public class SsjcMapInfo {
             vo.set("electricity", String.valueOf(currElectric));//点表信息
             vo.set("water", String.valueOf(readings));//水表信息
             vo.set("energyState","正常");*/
+    private int pCode;
     private String factoryNumber;
     private String companyName;
     private float electricity;
@@ -31,8 +34,16 @@ public class SsjcMapInfo {
         this.companyName = companyName;
     }
 
+    public int getpCode() {
+        return pCode;
+    }
+
+    public void setpCode(int pCode) {
+        this.pCode = pCode;
+    }
+
     public float getElectricity() {
-        return electricity;
+        return electricity* BeiLvUtil.BEILVTABLE[pCode];
     }
 
     public void setElectricity(float electricity) {
@@ -40,6 +51,8 @@ public class SsjcMapInfo {
     }
 
     public Double getWater() {
+        if(water==null)
+            return 0.0;
         return water;
     }
 
@@ -48,7 +61,8 @@ public class SsjcMapInfo {
     }
 
     public String getEnergyState() {
-        return energyState;
+
+        return "正常";
     }
 
     public void setEnergyState(String energyState) {

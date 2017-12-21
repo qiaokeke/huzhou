@@ -1,9 +1,6 @@
 package com.example.huzhou.mapper.test1;
 
-import com.example.huzhou.entity.PowerInfo;
-import com.example.huzhou.entity.PowerListInfo;
-import com.example.huzhou.entity.UserOwner;
-import com.example.huzhou.entity.WaterInfo;
+import com.example.huzhou.entity.*;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
@@ -13,6 +10,44 @@ import java.util.List;
  * Created by Raytine on 2017/9/2.
  */
 public interface UserOwnerDao {
+
+
+    @Select({"SELECT \n" +
+            "tbl_area.A_CODE as factoryNumber,A_ENAME as companyName,\n" +
+            "tbl_power_info_v2.P_ZXYGDN as electricity,\n" +
+            "tbl_power_info_v2.P_CODE as pCode," +
+            "tbl_water_info.W_READINGS AS water\n" +
+            "\n" +
+            "FROM\n" +
+            "tbl_area\n" +
+            "\n" +
+            "LEFT JOIN \n" +
+            "tbl_area_hardware ON tbl_area.A_CODE=tbl_area_hardware.AH_AREA_ID\n" +
+            "LEFT JOIN\n" +
+            "tbl_power_info_v2 ON tbl_power_info_v2.P_CODE = tbl_area_hardware.AH_HARDWARE_ID\n" +
+            "AND tbl_power_info_v2.P_TIME IN (\n" +
+            "\tSELECT\n" +
+            "\t\tMAX(tbl_power_info_v2.P_TIME)\n" +
+            "\tFROM\n" +
+            "\t\ttbl_power_info_v2\n" +
+            "\tGROUP BY\n" +
+            "\t\ttbl_power_info_v2.P_CODE\n" +
+            ")\n" +
+            "LEFT JOIN\n" +
+            "t_water_area ON tbl_area.A_CODE = t_water_area.a_code\n" +
+            "LEFT JOIN\n" +
+            "tbl_water_info ON t_water_area.w_addr = tbl_water_info.W_ADDRESS\n" +
+            "AND\n" +
+            "tbl_water_info.W_TIME in(\n" +
+            "\tSELECT MAX(tbl_water_info.W_TIME)\n" +
+            "\tFROM tbl_water_info\n" +
+            "\tGROUP BY\n" +
+            "\ttbl_water_info.W_ADDRESS\n" +
+            ")\n" +
+            "GROUP BY\n" +
+            "factoryNumber\n"})
+    List<SsjcMapInfo> selectMapInfo();
+
 
     @Select({
          "SELECT\n" +
