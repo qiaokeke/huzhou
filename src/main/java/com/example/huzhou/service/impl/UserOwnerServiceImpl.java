@@ -1,9 +1,6 @@
 package com.example.huzhou.service.impl;
 
-import com.example.huzhou.entity.PowerInfo;
-import com.example.huzhou.entity.SsjcMapInfo;
-import com.example.huzhou.entity.UserOwner;
-import com.example.huzhou.entity.WaterInfo;
+import com.example.huzhou.entity.*;
 import com.example.huzhou.mapper.test1.UserOwnerDao;
 import com.example.huzhou.service.UserOwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +15,11 @@ import java.util.List;
 public class UserOwnerServiceImpl implements UserOwnerService {
     @Autowired
     UserOwnerDao userOwnerDao;
+
+    @Override
+    public List<PowerWaterRtimeInfo> selectRealTimeInfos() {
+        return userOwnerDao.selectPWRtimeInfos();
+    }
 
     @Override
     public List<SsjcMapInfo> selectMapInfo() {

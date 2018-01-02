@@ -174,9 +174,18 @@ public class UserOwnerController {
         return JSONObject.toJSONString(map);
     }
 
-    //企业实时能耗数据，取出来前5个，就是排名，数据库里排序了
     @RequestMapping("/getEConsumption")
     @ResponseBody
+    public List<PowerWaterRtimeInfo> getRealTimeInfos(){
+        List<PowerWaterRtimeInfo> powerWaterRtimeInfos = userOwnerService.selectRealTimeInfos();
+
+        Collections.sort(powerWaterRtimeInfos,new RtimeComparator());
+
+        return powerWaterRtimeInfos;
+    }
+
+    //企业实时能耗数据，取出来前5个，就是排名，数据库里排序了
+
     public String getSsjcConsumption() {
         List<PowerInfo> infoList = userOwnerService.getSsjcConsumption();
 
@@ -257,6 +266,7 @@ public class UserOwnerController {
     }
 
 
+
      class MapComparatorAsc implements Comparator {
 
          @Override
@@ -267,6 +277,24 @@ public class UserOwnerController {
              float v1 = Float.parseFloat(m1.get("consumption"));
              float v2 = Float.parseFloat(m2.get("consumption"));
 
+             if(v1>v2)
+                 return -1;
+             if (v1<v2)
+                 return 1;
+
+             return 0;
+         }
+     }
+
+     class RtimeComparator implements Comparator{
+
+         @Override
+         public int compare(Object o1, Object o2) {
+             PowerWaterRtimeInfo p1 = (PowerWaterRtimeInfo) o1;
+             PowerWaterRtimeInfo p2 = (PowerWaterRtimeInfo) o2;
+
+             float v1 = p1.getConsumption();
+             float v2 = p2.getConsumption();
              if(v1>v2)
                  return -1;
              if (v1<v2)

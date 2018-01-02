@@ -64,10 +64,21 @@ public class PowerInfoAnalysisController {
                     for (int i =1;i < infoList.size();i++) {
                         Map<String ,String > map = new HashMap<>();
                         map.put("time",infoList.get(i).getpTime());//从周天开始
-                        map.put("total", String.valueOf(infoList.get(i).getpBYKwhZ()-infoList.get(i-1).getpBYKwhZ())); //总能耗
-                        map.put("tip", String.valueOf(infoList.get(i).getpBYKwhJ() - infoList.get(i - 1).getpBYKwhJ())); //尖
-                        map.put("peak", String.valueOf(infoList.get(i).getpBYKwhF() - infoList.get(i - 1).getpBYKwhF())); //峰
-                        map.put("valley", String.valueOf(infoList.get(i).getpBYKwhG() - infoList.get(i - 1).getpBYKwhG())); //谷
+                        float totalValue = infoList.get(i).getpBYKwhZ()-infoList.get(i-1).getpBYKwhZ();
+                        float tipValue = infoList.get(i).getpBYKwhJ() - infoList.get(i - 1).getpBYKwhJ();
+                        float peakValue = infoList.get(i).getpBYKwhF() - infoList.get(i - 1).getpBYKwhF();
+                        float valleyValue = infoList.get(i).getpBYKwhG() - infoList.get(i - 1).getpBYKwhG();
+                        if (totalValue<0){
+                            totalValue=0;
+                            tipValue=0;
+                            peakValue=0;
+                            valleyValue=0;
+                        }
+
+                        map.put("total", String.valueOf(totalValue)); //总能耗
+                        map.put("tip", String.valueOf(tipValue)); //尖
+                        map.put("peak", String.valueOf(peakValue)); //峰
+                        map.put("valley", String.valueOf(valleyValue)); //谷
                         list.add(map);
                     }
                     flag = false;

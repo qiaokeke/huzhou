@@ -26,22 +26,28 @@ public interface PowerInfoDao {
      */
 
     @Select({"SELECT\n" +
-            "tbl_power_info_v2.P_CODE as pCode,"+
+            "tbl_power_info_v2.P_CODE as pCode,\n" +
             "tbl_area.A_ENAME as companyName,\n" +
-            "MAX(tbl_power_info_v2.P_ZXYGDN) as pZXYGDN\n" +
+            "tbl_power_info_v2.P_ZXYGDN as pZXYGDN\n" +
             "FROM\n" +
             "tbl_power_info_v2,\n" +
-            "tbl_area_hardware,\n" +
-            "tbl_area\n" +
+            "tbl_area,\n" +
+            "tbl_area_hardware\n" +
             "WHERE\n" +
-            "tbl_power_info_v2.P_CODE = tbl_area_hardware.AH_HARDWARE_ID\n" +
+            "tbl_power_info_v2.P_CODE=tbl_area_hardware.AH_HARDWARE_ID\n" +
             "AND\n" +
-            "tbl_area_hardware.AH_AREA_ID = tbl_area.A_CODE\n" +
-            "\n" +
+            "tbl_area.A_CODE=tbl_area_hardware.AH_AREA_ID\n" +
+            "AND\n" +
+            "tbl_power_info_v2.P_ID\n" +
+            "in\n" +
+            "(SELECT\n" +
+            "max(tbl_power_info_v2.P_ID)\n" +
+            "FROM\n" +
+            "tbl_power_info_v2\n" +
             "GROUP BY\n" +
-            "companyName\n" +
-            "\n" +
-            "ORDER BY  pZXYGDN DESC\n"
+            "tbl_power_info_v2.P_CODE\n" +
+            ")\n" +
+            "ORDER BY pZXYGDN DESC"
             })
     List<PowerTotalInfo> selectTop5TotalPower();
 

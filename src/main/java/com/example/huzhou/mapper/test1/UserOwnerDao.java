@@ -13,6 +13,43 @@ public interface UserOwnerDao {
 
 
     @Select({"SELECT \n" +
+            "A_ENAME as eName,\n" +
+            "tbl_power_info_v2.P_BY_KwhZ as consumption,\n" +
+            "tbl_power_info_v2.P_CODE as pCode,\n" +
+            "tbl_water_info.W_READINGS AS water,\n" +
+            "tbl_power_info_v2.P_TIME as time\n" +
+            "FROM\n" +
+            "tbl_area\n" +
+            "\n" +
+            "LEFT JOIN\n" +
+            "tbl_area_hardware ON tbl_area.A_CODE=tbl_area_hardware.AH_AREA_ID\n" +
+            "LEFT JOIN\n" +
+            "tbl_power_info_v2 ON tbl_power_info_v2.P_CODE = tbl_area_hardware.AH_HARDWARE_ID\n" +
+            "AND tbl_power_info_v2.P_TIME IN (\n" +
+            "\tSELECT\n" +
+            "\t\tMAX(tbl_power_info_v2.P_TIME)\n" +
+            "\tFROM\n" +
+            "\t\ttbl_power_info_v2\n" +
+            "\tGROUP BY\n" +
+            "\t\ttbl_power_info_v2.P_CODE\n" +
+            ")\n" +
+            "LEFT JOIN\n" +
+            "t_water_area ON tbl_area.A_CODE = t_water_area.a_code\n" +
+            "LEFT JOIN\n" +
+            "tbl_water_info ON t_water_area.w_addr = tbl_water_info.W_ADDRESS\n" +
+            "AND\n" +
+            "tbl_water_info.W_TIME in(\n" +
+            "\tSELECT MAX(tbl_water_info.W_TIME)\n" +
+            "\tFROM tbl_water_info\n" +
+            "\tGROUP BY\n" +
+            "\ttbl_water_info.W_ADDRESS\n" +
+            ")\n" +
+            "\n" +
+            "GROUP BY\n" +
+            "eName\n"})
+    List<PowerWaterRtimeInfo> selectPWRtimeInfos();
+
+    @Select({"SELECT \n" +
             "tbl_area.A_CODE as factoryNumber,A_ENAME as companyName,\n" +
             "tbl_power_info_v2.P_ZXYGDN as electricity,\n" +
             "tbl_power_info_v2.P_CODE as pCode," +

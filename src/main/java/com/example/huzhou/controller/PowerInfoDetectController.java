@@ -100,7 +100,10 @@ public class PowerInfoDetectController {
                             e=0;
                         }
                        // logger.info("k Pcode:"+eletricSsjc.get(k).getpCode());
-                        mapELetric.put("electric", String.valueOf(e* BeiLvUtil.BEILVTABLE[(int) pList.get(0)]));
+                        float value = e*BeiLvUtil.BEILVTABLE[(int) pList.get(0)];
+                        if (value>100.0)
+                            value=0;
+                        mapELetric.put("electric", String.valueOf(value));
                         list.add(mapELetric);
                     }
                     flag = false;
