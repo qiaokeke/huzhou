@@ -113,7 +113,7 @@ $(function() {
     rateFactory.setOption(pieOption2);
 
 
-    var powerAll = echarts.init(document.getElementById('power-all'));
+    var powerAll = echarts.init(document.getElementById('api-all'));
     option3 = {
         tooltip: {
             trigger: 'axis',

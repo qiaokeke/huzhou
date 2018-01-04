@@ -4813,7 +4813,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    /**
 	     * find a “nice” number approximately equal to x. Round the number if round = true,
 	     * take ceiling if round = false. The primary observation is that the “nicest”
-	     * numbers in decimal are 1, 2, and 5, and all power-of-ten multiples of these numbers.
+	     * numbers in decimal are 1, 2, and 5, and all api-of-ten multiples of these numbers.
 	     *
 	     * See "Nice Numbers for Graph Labels" of Graphic Gems.
 	     *
@@ -24551,7 +24551,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var extent = this._extent;
 	        other[0] < extent[0] && (extent[0] = other[0]);
 	        other[1] > extent[1] && (extent[1] = other[1]);
-	        // not setExtent because in log axis it may transformed to power
+	        // not setExtent because in log axis it may transformed to api
 	        // this.setExtent(extent[0], extent[1]);
 	    };
 
@@ -54302,7 +54302,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            this._api = api;
 
 	            // Optimize: `render` will be called repeatly during mouse move.
-	            // So it is power consuming if performing `render` each time,
+	            // So it is api consuming if performing `render` each time,
 	            // especially on mobile device.
 	            if (!forceRender
 	                && this._lastValue === value

@@ -18,13 +18,16 @@ import java.util.List;
 @Mapper
 public interface PowerInfoDao {
 
+
+
+
+
     /**
      * 查询能耗榜单
      * @param
      * @param
      * @return
      */
-
     @Select({"SELECT\n" +
             "tbl_power_info_v2.P_CODE as pCode,\n" +
             "tbl_area.A_ENAME as companyName,\n" +
