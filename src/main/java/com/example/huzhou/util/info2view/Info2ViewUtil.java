@@ -3,6 +3,8 @@ package com.example.huzhou.util.info2view;
 import com.example.huzhou.entity.power.PowerZXYGDNInfo;
 import com.example.huzhou.entity.power.PowerZXYGDNView;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -52,9 +54,39 @@ public class Info2ViewUtil {
 
         }
         views.remove(0);
+    }
 
+    public static  void delectMaxPowerZXYGDNView(List<PowerZXYGDNView> views){
+        PowerZXYGDNView view = Collections.max(views,new PowerZXYGDNViewComparator());
 
+        //暂时先删除这个
+
+        for(int i=0;i<views.size();i++){
+            if(views.get(i).getpZXYGDN()==view.getpZXYGDN()){
+                views.remove(i);
+                return;
+            }
+        }
     }
 
 
+
+}
+class PowerZXYGDNViewComparator implements Comparator{
+
+    @Override
+    public int compare(Object o1, Object o2) {
+        PowerZXYGDNView view1 = (PowerZXYGDNView) o1;
+        PowerZXYGDNView view2 = (PowerZXYGDNView) o2;
+
+        float v1 = view1.getpZXYGDN();
+        float v2 = view2.getpZXYGDN();
+
+        if(v1>v2)
+            return 1;
+
+        if (v1<v2)
+            return -1;
+        return 0;
+    }
 }

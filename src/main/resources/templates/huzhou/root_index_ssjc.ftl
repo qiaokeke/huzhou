@@ -53,274 +53,273 @@
 <body class="bg">
 <div class="wrapper">
     <div class="main">
-<!--导航条-->
-<div id="nav"><#include "nav.html"></div>
-<div class="container ">
-    <div class="row">
-        <div class="col-md-4">
-            <a href="main.ftl">首页</a> >>
-            <a href="javascript:void (0)">绿色•低碳•能源•大数据平台</a> >>
-            <a href="javascript:void (0)"><span id="aCode">A11</span></a>
-        </div>
-    </div>
-    <div class="row" style="line-height: 50px;">
-        <div class="col-md-4">
-            公司名称：<span id="cName"></span>
-        </div>
-        <div class="col-md-6">
-            所属行业：<span id="cKind"></span>
-        </div>
-    </div>
-    <div class="row">
-        &nbsp;&nbsp;&nbsp;&nbsp;选择企业：&nbsp;
-        <select class="input-sm" id="companyNameList" style="margin-bottom: 30px;">
-        </select>
-        <button class="btn btn-info" id="selectCom" style="margin-left: 50px;">确定</button>
-    </div>
-    <div class="row">
-        <ul class="nav nav-tabs" role="tablist" id="mytabs">
-            <li role="presentation" class="active"><a href="#curdata" aria-controls="home" role="tab" data-toggle="tab">实时数据</a></li>
-            <li role="presentation"><a href="#calendar" aria-controls="profile" role="tab" data-toggle="tab">分时能耗日历</a></li>
-            <li role="presentation"><a href="#calendar-new" aria-controls="profile" role="tab" data-toggle="tab">峰谷能耗日历</a></li>
-            <li role="presentation"><a href="#calendar-week" aria-controls="profile" role="tab" data-toggle="tab">周能耗日历</a></li>
-            <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">能耗目标</a></li>
-            <li role="presentation"><a href="#money" aria-controls="money" role="tab" data-toggle="tab">可用余额</a></li>
-        </ul>
-        <div class="tab-content">
-            <!--实时监测-->
-            <div role="tabpanel" class="tab-pane active" id="curdata" style="width: 100%; height: 400px; border: 1px solid #ccc; padding: 10px;"></div>
-            <!--能耗日历--分时能耗-->
-            <div role="tabpanel" class="tab-pane " id="calendar">
-                <div class="row">
-                    <div class="col-md-6" id="calendar1" style="width: 585px; height: 420px; border: 1px solid #ccc; padding: 10px;"></div>
-                    <div class="col-md-6" style="width: 585px; height: 420px; border: 1px solid #ccc; padding: 10px;">
-                        <a href="javascript:void(0)" style=" color:#111;">分时能耗</a>
-                        <div id="useage" style="width: 585px; height: 400px;"></div>
-                    </div>
+        <!--导航条-->
+        <div id="nav"><#include "nav.html"></div>
+        <div class="container ">
+            <div class="row">
+                <div class="col-md-4">
+                    <a href="main.ftl">首页</a> >>
+                    <a href="javascript:void (0)">绿色•低碳•能源•大数据平台</a> >>
+                    <a href="javascript:void (0)"><span id="aCode">A11</span></a>
                 </div>
             </div>
-            <!--峰谷能耗日历-->
-            <div role="tabpanel" class="tab-pane" id="calendar-new">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-12" style="height: 620px;">
-                            <div style="width: 570px;margin: 0 auto 20px;">
-                                <form class="form-inline pull-left" style="width: 260px;">
-                                    <div class="form-group">
-                                        <select name="year" class="form-control" id="year">
-                                            <option value="2017">2017</option>
-                                            <option value="2018">2018</option>
-                                            <option value="2019">2019</option>
-                                            <option value="2020">2020</option>
-                                            <option value="2021">2021</option>
-                                        </select>
-                                        <label for="year">年</label>
-                                    </div>
-                                    <div class="form-group">
-                                        <select name="month" class="form-control" id="month">
-                                            <option value="01">1</option>
-                                            <option value="02">2</option>
-                                            <option value="03">3</option>
-                                            <option value="04">4</option>
-                                            <option value="05">5</option>
-                                            <option value="06">6</option>
-                                            <option value="07">7</option>
-                                            <option value="08">8</option>
-                                            <option value="09">9</option>
-                                            <option value="10">10</option>
-                                            <option value="11">11</option>
-                                            <option value="12">12</option>
-                                        </select>
-                                        <label for="month">月</label>
-                                    </div>
-                                    <input type="button" value="查询" class="btn btn-primary" id="findit"/>
-                                </form>
+            <div class="row" style="line-height: 50px;">
+                <div class="col-md-4">
+                    公司名称：<span id="cName"></span>
+                </div>
+                <div class="col-md-6">
+                    所属行业：<span id="cKind"></span>
+                </div>
+            </div>
+            <div class="row">
+                &nbsp;&nbsp;&nbsp;&nbsp;选择企业：&nbsp;
+                <select class="input-sm" id="companyNameList" style="margin-bottom: 30px;">
+                </select>
+                <button class="btn btn-info" id="selectCom" style="margin-left: 50px;">确定</button>
+            </div>
+            <div class="row">
+                <ul class="nav nav-tabs" role="tablist" id="mytabs">
+                    <li role="presentation" class="active"><a href="#curdata" aria-controls="home" role="tab" data-toggle="tab">实时数据</a></li>
+                    <li role="presentation"><a href="#calendar" aria-controls="profile" role="tab" data-toggle="tab">分时能耗日历</a></li>
+                    <li role="presentation"><a href="#calendar-new" aria-controls="profile" role="tab" data-toggle="tab">峰谷能耗日历</a></li>
+                    <li role="presentation"><a href="#calendar-week" aria-controls="profile" role="tab" data-toggle="tab">周能耗日历</a></li>
+                    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">能耗目标</a></li>
+                    <li role="presentation"><a href="#money" aria-controls="money" role="tab" data-toggle="tab">可用余额</a></li>
+                </ul>
+                <div class="tab-content">
+                    <!--实时监测-->
+                    <div role="tabpanel" class="tab-pane active" id="curdata" style="width: 100%; height: 400px; border: 1px solid #ccc; padding: 10px;"></div>
+                    <!--能耗日历--分时能耗-->
+                    <div role="tabpanel" class="tab-pane " id="calendar">
+                        <div class="row">
+                            <div class="col-md-6" id="calendar1" style="width: 585px; height: 420px; border: 1px solid #ccc; padding: 10px;"></div>
+                            <div class="col-md-6" style="width: 585px; height: 420px; border: 1px solid #ccc; padding: 10px;">
+                                <a href="javascript:void(0)" style=" color:#111;">分时能耗</a>
+                                <div id="useage" style="width: 585px; height: 400px;"></div>
                             </div>
-                            <div style="height: 500px;width: 570px; margin: 0 auto;margin-top: 50px;" id="calendar-container"></div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <!-- 周能耗日历 -->
-            <div role="tabpanel" class="tab-pane" id="calendar-week" style="width: 1148px; height: 700px; padding: 10px;"></div>
-            <!--能耗目标-->
-            <div role="tabpanel" class="tab-pane " id="messages">
-                <div class="container">
-                    <div class="row" style="padding-top: 20px;">
-                        <div class="col-md-4">
-                            当月电能耗目标&nbsp;&nbsp;&nbsp;
-                            <input type="text" value="60KWH" title="能耗" id="eleTarget">
-                        </div>
-                        <div class="col-md-4">
-                            当月水能耗目标&nbsp;&nbsp;&nbsp;
-                            <input type="text" value="30m³" title="能耗" id="warTarget">
-                        </div>
-                        <div class="col-md-4">
-                            企业分类
-                        </div>
-                    </div>
-                    <div class="row" style="padding-top: 20px;">
-                        <div class="col-md-4" id="electrical" style="width: 390px; height: 400px; border: 1px solid #ccc;  "></div>
-                        <div class="col-md-4" id="water" style="width: 390px; height: 400px; border: 1px solid #ccc;  "></div>
-                        <div class="col-md-4" id="comType" style="width: 390px; height: 400px; border: 1px solid #ccc;  "></div>
-                    </div>
-                </div>
-            </div>
-            <!--余额-->
-            <div role="tabpanel" class="tab-pane" id="money">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6" id="left_money" style="width:585px; height: 410px; border: 1px solid #ccc;"></div>
-                        <div class="col-md-6" style=" width:585px;height: 410px; border: 1px solid #ccc;">
+                    <!--峰谷能耗日历-->
+                    <div role="tabpanel" class="tab-pane" id="calendar-new">
+                        <div class="container">
                             <div class="row">
-                                <ul class="nav nav-tabs" role="tablist">
-                                    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">电费</a></li>
-                                    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">水费</a></li>
-                                </ul>
-                                <div class="tab-content">
-                                    <div role="tabpanel" class="tab-pane active" id="home">
-                                        <div class="row" style="padding: 20px 20px 0 20px">
-                                            <div class="col-md-4">
-                                                <div class="panel panel-info">
-                                                    <div class="panel-heading">1000元</div>
-                                                    <div class="panel-body">
-                                                        预充值1000元
+                                <div class="col-sm-12 col-md-12" style="height: 620px;">
+                                    <div style="width: 570px;margin: 0 auto 20px;">
+                                        <form class="form-inline pull-left" style="width: 260px;">
+                                            <div class="form-group">
+                                                <select name="year" class="form-control" id="year">
+                                                    <option value="2017">2017</option>
+                                                    <option value="2018">2018</option>
+                                                    <option value="2019">2019</option>
+                                                    <option value="2020">2020</option>
+                                                    <option value="2021">2021</option>
+                                                </select>
+                                                <label for="year">年</label>
+                                            </div>
+                                            <div class="form-group">
+                                                <select name="month" class="form-control" id="month">
+                                                    <option value="01">1</option>
+                                                    <option value="02">2</option>
+                                                    <option value="03">3</option>
+                                                    <option value="04">4</option>
+                                                    <option value="05">5</option>
+                                                    <option value="06">6</option>
+                                                    <option value="07">7</option>
+                                                    <option value="08">8</option>
+                                                    <option value="09">9</option>
+                                                    <option value="10">10</option>
+                                                    <option value="11">11</option>
+                                                    <option value="12">12</option>
+                                                </select>
+                                                <label for="month">月</label>
+                                            </div>
+                                            <input type="button" value="查询" class="btn btn-primary" id="findit"/>
+                                        </form>
+                                    </div>
+                                    <div style="height: 500px;width: 570px; margin: 0 auto;margin-top: 50px;" id="calendar-container"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 周能耗日历 -->
+                    <div role="tabpanel" class="tab-pane" id="calendar-week" style="width: 1148px; height: 700px; padding: 10px;"></div>
+                    <!--能耗目标-->
+                    <div role="tabpanel" class="tab-pane " id="messages">
+                        <div class="container">
+                            <div class="row" style="padding-top: 20px;">
+                                <div class="col-md-4">
+                                    当月电能耗目标&nbsp;&nbsp;&nbsp;
+                                    <input type="text" value="60KWH" title="能耗" id="eleTarget">
+                                </div>
+                                <div class="col-md-4">
+                                    当月水能耗目标&nbsp;&nbsp;&nbsp;
+                                    <input type="text" value="30m³" title="能耗" id="warTarget">
+                                </div>
+                                <div class="col-md-4">
+                                    企业分类
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top: 20px;">
+                                <div class="col-md-4" id="electrical" style="width: 390px; height: 400px; border: 1px solid #ccc;  "></div>
+                                <div class="col-md-4" id="water" style="width: 390px; height: 400px; border: 1px solid #ccc;  "></div>
+                                <div class="col-md-4" id="comType" style="width: 390px; height: 400px; border: 1px solid #ccc;  "></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--余额-->
+                    <div role="tabpanel" class="tab-pane" id="money">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-6" id="left_money" style="width:585px; height: 410px; border: 1px solid #ccc;"></div>
+                                <div class="col-md-6" style=" width:585px;height: 410px; border: 1px solid #ccc;">
+                                    <div class="row">
+                                        <ul class="nav nav-tabs" role="tablist">
+                                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">电费</a></li>
+                                            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">水费</a></li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div role="tabpanel" class="tab-pane active" id="home">
+                                                <div class="row" style="padding: 20px 20px 0 20px">
+                                                    <div class="col-md-4">
+                                                        <div class="panel panel-info">
+                                                            <div class="panel-heading">1000元</div>
+                                                            <div class="panel-body">
+                                                                预充值1000元
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="panel panel-info">
+                                                            <div class="panel-heading">2000元</div>
+                                                            <div class="panel-body">
+                                                                预充值2000元
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="panel panel-info">
+                                                            <div class="panel-heading">3000元</div>
+                                                            <div class="panel-body">
+                                                                预充值3000元
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="panel panel-info">
+                                                            <div class="panel-heading">5000元</div>
+                                                            <div class="panel-body">
+                                                                预充值5000元
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="panel panel-info">
+                                                            <div class="panel-heading">10000元</div>
+                                                            <div class="panel-body">
+                                                                预充值10000元
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="panel panel-info">
+                                                            <div class="panel-heading">20000元</div>
+                                                            <div class="panel-body">
+                                                                预充值20000元
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
-                                                <div class="panel panel-info">
-                                                    <div class="panel-heading">2000元</div>
-                                                    <div class="panel-body">
-                                                        预充值2000元
+                                            <div role="tabpanel" class="tab-pane" id="profile">
+                                                <div class="row" style="padding: 20px 20px 0 20px">
+                                                    <div class="col-md-4">
+                                                        <div class="panel panel-info">
+                                                            <div class="panel-heading">200元</div>
+                                                            <div class="panel-body">
+                                                                预充值200元
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="panel panel-info">
-                                                    <div class="panel-heading">3000元</div>
-                                                    <div class="panel-body">
-                                                        预充值3000元
+                                                    <div class="col-md-4">
+                                                        <div class="panel panel-info">
+                                                            <div class="panel-heading">300元</div>
+                                                            <div class="panel-body">
+                                                                预充值300元
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="panel panel-info">
-                                                    <div class="panel-heading">5000元</div>
-                                                    <div class="panel-body">
-                                                        预充值5000元
+                                                    <div class="col-md-4">
+                                                        <div class="panel panel-info">
+                                                            <div class="panel-heading">500元</div>
+                                                            <div class="panel-body">
+                                                                预充值500元
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="panel panel-info">
-                                                    <div class="panel-heading">10000元</div>
-                                                    <div class="panel-body">
-                                                        预充值10000元
+                                                    <div class="col-md-4">
+                                                        <div class="panel panel-info">
+                                                            <div class="panel-heading">1000元</div>
+                                                            <div class="panel-body">
+                                                                预充值1000元
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="panel panel-info">
-                                                    <div class="panel-heading">20000元</div>
-                                                    <div class="panel-body">
-                                                        预充值20000元
+                                                    <div class="col-md-4">
+                                                        <div class="panel panel-info">
+                                                            <div class="panel-heading">2000元</div>
+                                                            <div class="panel-body">
+                                                                预充值2000元
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="panel panel-info">
+                                                            <div class="panel-heading">3000元</div>
+                                                            <div class="panel-body">
+                                                                预充值3000元
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div role="tabpanel" class="tab-pane" id="profile">
-                                        <div class="row" style="padding: 20px 20px 0 20px">
-                                            <div class="col-md-4">
-                                                <div class="panel panel-info">
-                                                    <div class="panel-heading">200元</div>
-                                                    <div class="panel-body">
-                                                        预充值200元
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="panel panel-info">
-                                                    <div class="panel-heading">300元</div>
-                                                    <div class="panel-body">
-                                                        预充值300元
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="panel panel-info">
-                                                    <div class="panel-heading">500元</div>
-                                                    <div class="panel-body">
-                                                        预充值500元
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="panel panel-info">
-                                                    <div class="panel-heading">1000元</div>
-                                                    <div class="panel-body">
-                                                        预充值1000元
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="panel panel-info">
-                                                    <div class="panel-heading">2000元</div>
-                                                    <div class="panel-body">
-                                                        预充值2000元
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="panel panel-info">
-                                                    <div class="panel-heading">3000元</div>
-                                                    <div class="panel-body">
-                                                        预充值3000元
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <div class="row" style="padding-left: 20px;">
+                                        <h3>支付方式</h3>
+                                        <a class="btn btn-info" href="javascript:void(0)" aria-label="Delete">
+
+                                            <i class="fa fa-credit-card fa-2x"></i>
+                                        </a>
+                                        <a class="btn btn-info" href="javascript:void(0)" aria-label="Delete">
+                                            <i class="fa fa-weixin fa-2x"></i>
+                                        </a>
+                                        <img src="/static/picture/pay.png" class="btn btn-info" />
+                                        <a class="report" href="note" target="_blank"><button class="btn btn-primary">通知单</button></a>
+                                        <a class="report" href="report" target="_blank"><button class="btn btn-primary">电费单</button></a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row" style="padding-left: 20px;">
-                                <h3>支付方式</h3>
-                                <a class="btn btn-info" href="javascript:void(0)" aria-label="Delete">
-
-                                    <i class="fa fa-credit-card fa-2x"></i>
-                                </a>
-                                <a class="btn btn-info" href="javascript:void(0)" aria-label="Delete">
-                                    <i class="fa fa-weixin fa-2x"></i>
-                                </a>
-                                <img src="/static/picture/pay.png" class="btn btn-info" />
-                                <a class="report" href="note" target="_blank"><button class="btn btn-primary">通知单</button></a>
-                                <a class="report" href="report" target="_blank"><button class="btn btn-primary">电费单</button></a>
-                            </div>
                         </div>
                     </div>
+
                 </div>
             </div>
-
         </div>
-    </div>
-</div>
     </div>
 </div>
 <div id="footer-in"><#include "footer_1.html"></div>
 <script>
     //获取url上的参数
-    var urlStr =  decodeURI(window.location.href);
-    var num = urlStr.indexOf("?");
-    urlStr = urlStr.substr(num+1); //取得所有参数
-    pList = urlStr.split("&"); //各个参数放到数组里
-    var getP = pList[0].split('=');
-    pList[0] = getP[1];
-    getP = pList[1].split('=');
-    pList[1] = getP[1];
-    $("#aCode").html(pList[0]);
-    $("#cName").html(pList[1]);
-
+       var urlStr =  decodeURI(window.location.href);
+       var num = urlStr.indexOf("?");
+       urlStr = urlStr.substr(num+1); //取得所有参数
+       pList = urlStr.split("&"); //各个参数放到数组里
+       var getP = pList[0].split('=');
+       pList[0] = getP[1];
+       getP = pList[1].split('=');
+       pList[1] = getP[1];
+       $("#aCode").html(pList[0]);
+       $("#cName").html(pList[1]);
     $.ajax({
         url:'/company/info',
         dataType:'json',
@@ -334,12 +333,12 @@
                     index = i;
                 }
             }
-            if(info[index].type){
-                $("#cKind").html(info[index].type);
-            }
-           else {
-                $("#cKind").html('无');
-            }
+//            if(info[index].type != undefined){
+//                $("#cKind").html(info[index].type);
+//            }
+//           else {
+            $("#cKind").html('无');
+//            }
         },
         error: function(){
             console.log("公司信息获取失败。");
@@ -390,8 +389,8 @@
             return data;
         }();
         //设置默认值
-      var data_power = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-      var data_water = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+        var data_power = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+        var data_water = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
         WEChart.showLoading();
         option = {
             tooltip: {
@@ -488,7 +487,7 @@
         WEChart.setOption(option);
 
 //        请求路径
-            setWEUrl = "/ssjc/water?aCode="+pList[0];
+        setWEUrl = "/ssjc/water?aCode="+pList[0];
         function getMyJson(){
             $.ajax({
                 type: 'GET',
@@ -536,10 +535,10 @@
         /*实时监测请求实时数据*/
         setInterval(function() {
             getMyJson();
-         }, 3600000);
+        }, 3600000);
 
 
-    /*能耗日历 分时能耗*/
+        /*能耗日历 分时能耗*/
 
         //获取当前年月
         var myDate = new Date();
@@ -955,7 +954,7 @@
             });
         }
         setClendarOption();
-    /*能耗目标----耗电情况*/
+        /*能耗目标----耗电情况*/
         var powerChart = echarts.init(document.getElementById('electrical'));
         powerChart.showLoading();
         var percent = 26.8 + '%';
@@ -1060,7 +1059,7 @@
         powerChart.hideLoading();
         powerChart.setOption(option);
 
-    /*能耗目标----耗水情况*/
+        /*能耗目标----耗水情况*/
         var waterChart = echarts.init(document.getElementById('water'));
         waterChart.showLoading();
         var option = {
@@ -1115,7 +1114,7 @@
             }
         });
 
-    /*能耗目标----企业分类*/
+        /*能耗目标----企业分类*/
         var compareChart = echarts.init(document.getElementById('comType'));
         compareChart.showLoading();
         option = {
@@ -1161,7 +1160,7 @@
         };
         compareChart.hideLoading();
         compareChart.setOption(option);
-    /*可用余额*/
+        /*可用余额*/
         var myChartYE = echarts.init(document.getElementById('left_money'));
         myChartYE.showLoading();
         option = {
@@ -1231,47 +1230,48 @@
             pList[0] = newACode[0];
             hasClick = true;
             setClendarOption();
+            weekClandarUrl = "/huzhou/api/power/tswkHoursZXYGDNViews?aCode="+newACode[0];
+            weekClandarGetJson();
         });
     })
 </script>
 <#--周能耗日历-->
 <script>
+    weekClandarUrl = "/huzhou/api/power/tswkHoursZXYGDNViews?aCode="+pList[0];
     function myMap(days, hours, data) {
         myData = [];
         i = 0;
         for (k = 0; k < days.length; k++) {
             for (j = 0; j < hours.length; j++) {
-                myData.push([days[k], hours[j], data[i][2]]);
-                myData.push([days[k], hours[j], 0]);
+                myData.push([weekDays[k], weekHours[j], weekCladarData[i][2]]);
+                myData.push([weekDays[k],weekHours[j], 0]);
                 i++;
             }
         }
         return myData;
     }
     $(function() {
-        var hours = ['1时', '2时', '3时', '4时', '5时', '6时',
+        weekHours = ['1时', '2时', '3时', '4时', '5时', '6时',
             '7时', '8时', '9时', '10时', '11时', '12时',
             '13时', '14时', '15时', '16时', '17时', '18时',
             '19时', '20时', '21时', '22时', '23时', '24时'
         ];
-        var days = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
-
-        var data = [
-            [0, 0, 5], [0, 1, 1], [0, 2, 0], [0, 3, 0], [0, 4, 0], [0, 5, 0], [0, 6, 0], [0, 7, 0], [0, 8, 0], [0, 9, 0], [0, 10, 0], [0, 11, 2], [0, 12, 4],
-            [0, 13, 1], [0, 14, 1], [0, 15, 3], [0, 16, 4], [0, 17, 6], [0, 18, 4], [0, 19, 4], [0, 20, 3], [0, 21, 3], [0, 22, 2], [0, 23, 5], [1, 0, 7],
-            [1, 1, 0], [1, 2, 0], [1, 3, 0], [1, 4, 0], [1, 5, 0], [1, 6, 0], [1, 7, 0], [1, 8, 0], [1, 9, 0], [1, 10, 5], [1, 11, 2], [1, 12, 2], [1, 13, 6],
-            [1, 14, 9], [1, 15, 11], [1, 16, 6], [1, 17, 7], [1, 18, 8], [1, 19, 12], [1, 20, 5], [1, 21, 5], [1, 22, 7], [1, 23, 2], [2, 0, 1], [2, 1, 1],
-            [2, 2, 0], [2, 3, 0], [2, 4, 0], [2, 5, 0], [2, 6, 0], [2, 7, 0], [2, 8, 0], [2, 9, 0], [2, 10, 3], [2, 11, 2], [2, 12, 1], [2, 13, 9], [2, 14, 8],
-            [2, 15, 10], [2, 16, 6], [2, 17, 5], [2, 18, 5], [2, 19, 5], [2, 20, 7], [2, 21, 4], [2, 22, 2], [2, 23, 4], [3, 0, 7], [3, 1, 3], [3, 2, 0], [3, 3, 0],
-            [3, 4, 0], [3, 5, 0], [3, 6, 0], [3, 7, 0], [3, 8, 1], [3, 9, 0], [3, 10, 5], [3, 11, 4], [3, 12, 7], [3, 13, 14], [3, 14, 13], [3, 15, 12], [3, 16, 9],
-            [3, 17, 5], [3, 18, 5], [3, 19, 10], [3, 20, 6], [3, 21, 4], [3, 22, 4], [3, 23, 1], [4, 0, 1], [4, 1, 3], [4, 2, 0], [4, 3, 0], [4, 4, 0], [4, 5, 1],
-            [4, 6, 0], [4, 7, 0], [4, 8, 0], [4, 9, 2], [4, 10, 4], [4, 11, 4], [4, 12, 2], [4, 13, 4], [4, 14, 4], [4, 15, 14], [4, 16, 12], [4, 17, 1], [4, 18, 8],
-            [4, 19, 5], [4, 20, 3], [4, 21, 7], [4, 22, 3], [4, 23, 0], [5, 0, 2], [5, 1, 1], [5, 2, 0], [5, 3, 3], [5, 4, 0], [5, 5, 0], [5, 6, 0], [5, 7, 0],
-            [5, 8, 2], [5, 9, 0], [5, 10, 4], [5, 11, 1], [5, 12, 5], [5, 13, 10], [5, 14, 5], [5, 15, 7], [5, 16, 11], [5, 17, 6], [5, 18, 0], [5, 19, 5], [5, 20, 3],
-            [5, 21, 4], [5, 22, 2], [5, 23, 0], [6, 0, 1], [6, 1, 0], [6, 2, 0], [6, 3, 0], [6, 4, 0], [6, 5, 0], [6, 6, 0], [6, 7, 0], [6, 8, 0], [6, 9, 0], [6, 10, 1],
-            [6, 11, 0], [6, 12, 2], [6, 13, 1], [6, 14, 3], [6, 15, 4], [6, 16, 0], [6, 17, 0], [6, 18, 0], [6, 19, 0], [6, 20, 1], [6, 21, 2], [6, 22, 2], [6, 23, 6]
+        weekDays = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
+        weekCladarData = [
+            [0, 0, 0], [0, 1, 0], [0, 2, 0], [0, 3, 0], [0, 4, 0], [0, 5, 0], [0, 6, 0], [0, 7, 0], [0, 8, 0], [0, 9, 0], [0, 10, 0], [0, 11, 0], [0, 12, 0],
+            [0, 13, 0], [0, 14, 0], [0, 15, 0], [0, 16, 0], [0, 17, 0], [0, 18, 0], [0, 19, 0], [0, 20, 0], [0, 21, 0], [0, 22, 0], [0, 23, 0], [1, 0, 0],
+            [1, 1, 0], [1, 2, 0], [1, 3, 0], [1, 4, 0], [1, 5, 0], [1, 6, 0], [1, 7, 0], [1, 8, 0], [1, 9, 0], [1, 10, 0], [1, 11, 0], [1, 12, 0], [1, 13, 0],
+            [1, 14, 0], [1, 15, 0], [1, 16, 0], [1, 17, 0], [1, 18, 0], [1, 19, 0], [1, 20, 0], [1, 21, 0], [1, 22, 0], [1, 23, 0], [2, 0, 0], [2, 1, 0],
+            [2, 2, 0], [2, 3, 0], [2, 4, 0], [2, 5, 0], [2, 6, 0], [2, 7, 0], [2, 8, 0], [2, 9, 0], [2, 10, 0], [2, 11, 0], [2, 12, 0], [2, 13, 0], [2, 14, 0],
+            [2, 15, 0], [2, 16, 0], [2, 17, 0], [2, 18, 0], [2, 19, 0], [2, 20, 0], [2, 21, 0], [2, 22, 0], [2, 23, 0], [3, 0, 0], [3, 1, 0], [3, 2, 0], [3, 3, 0],
+            [3, 4, 0], [3, 5, 0], [3, 6, 0], [3, 7, 0], [3, 8, 0], [3, 9, 0], [3, 10, 0], [3, 11, 0], [3, 12, 0], [3, 13, 0], [3, 14, 0], [3, 15, 0], [3, 16, 0],
+            [3, 17, 0], [3, 18, 0], [3, 19, 0], [3, 20, 0], [3, 21, 0], [3, 22, 0], [3, 23, 0], [4, 0, 0], [4, 1, 0], [4, 2, 0], [4, 3, 0], [4, 4, 0], [4, 5, 0],
+            [4, 6, 0], [4, 7, 0], [4, 8, 0], [4, 9, 0], [4, 10, 0], [4, 11, 0], [4, 12, 0], [4, 13, 0], [4, 14, 0], [4, 15, 0], [4, 16, 0], [4, 17, 0], [4, 18, 0],
+            [4, 19, 0], [4, 20, 0], [4, 21, 0], [4, 22, 0], [4, 23, 0], [5, 0, 0], [5, 1, 0], [5, 2, 0], [5, 3, 0], [5, 4, 0], [5, 5, 0], [5, 6, 0], [5, 7, 0],
+            [5, 8, 0], [5, 9, 0], [5, 10, 0], [5, 11, 0], [5, 12, 0], [5, 13, 0], [5, 14, 0], [5, 15, 0], [5, 16, 0], [5, 17, 0], [5, 18, 0], [5, 19, 0], [5, 20, 0],
+            [5, 21, 0], [5, 22, 0], [5, 23, 0], [6, 0, 0], [6, 1, 0], [6, 2, 0], [6, 3, 0], [6, 4, 0], [6, 5, 0], [6, 6, 0], [6, 7, 0], [6, 8, 0], [6, 9, 0], [6, 10, 0],
+            [6, 11, 0], [6, 12, 0], [6, 13, 0], [6, 14, 0], [6, 15, 0], [6, 16, 0], [6, 17, 0], [6, 18, 0], [6, 19, 0], [6, 20, 0], [6, 21, 0], [6, 22, 0], [6, 23, 0]
         ];
-        console.log("data"+data[0][1]);
         calendarWeek = echarts.init(document.getElementById("calendar-week"));
         calendarWeekOption = {
             tooltip: {},
@@ -1310,20 +1310,20 @@
                 show: true,
                 name: 'X',
                 type: 'category',
-                data: days
+                data: weekDays
             },
             yAxis3D: {
                 show: true,
                 name: 'Y',
                 type: 'category',
-                data: hours
+                data: weekHours
             },
             zAxis3D: {
                 show: true,
                 name: 'Z',
                 type: 'value',
-                min: 0,
-                max: 15,
+                // min: 0,
+                // max: 15,
                 axisLabel: {
                     formatter: '{value}kw/h'
                 },
@@ -1333,7 +1333,7 @@
                 type: 'bar3D',
                 shading: 'lambert',
                 name: '能耗',
-                data: myMap(days, hours, data),
+                data: myMap(weekDays, weekHours, weekCladarData),
                 emphasis: {
                     itemStyle: {
                         color: 'red'
@@ -1344,8 +1344,56 @@
                 }
             }
         };
+        calendarWeek.hideLoading();
         calendarWeek.setOption(calendarWeekOption);
     });
+    function weekClandarGetJson(){
+        $.ajax({
+            url:weekClandarUrl,
+            dataType:'json',
+            success:function (myJson) {
+                //重置
+                weekCladarData = [
+                    [0, 0, 0], [0, 1, 0], [0, 2, 0], [0, 3, 0], [0, 4, 0], [0, 5, 0], [0, 6, 0], [0, 7, 0], [0, 8, 0], [0, 9, 0], [0, 10, 0], [0, 11, 0], [0, 12, 0],
+                    [0, 13, 0], [0, 14, 0], [0, 15, 0], [0, 16, 0], [0, 17, 0], [0, 18, 0], [0, 19, 0], [0, 20, 0], [0, 21, 0], [0, 22, 0], [0, 23, 0], [1, 0, 0],
+                    [1, 1, 0], [1, 2, 0], [1, 3, 0], [1, 4, 0], [1, 5, 0], [1, 6, 0], [1, 7, 0], [1, 8, 0], [1, 9, 0], [1, 10, 0], [1, 11, 0], [1, 12, 0], [1, 13, 0],
+                    [1, 14, 0], [1, 15, 0], [1, 16, 0], [1, 17, 0], [1, 18, 0], [1, 19, 0], [1, 20, 0], [1, 21, 0], [1, 22, 0], [1, 23, 0], [2, 0, 0], [2, 1, 0],
+                    [2, 2, 0], [2, 3, 0], [2, 4, 0], [2, 5, 0], [2, 6, 0], [2, 7, 0], [2, 8, 0], [2, 9, 0], [2, 10, 0], [2, 11, 0], [2, 12, 0], [2, 13, 0], [2, 14, 0],
+                    [2, 15, 0], [2, 16, 0], [2, 17, 0], [2, 18, 0], [2, 19, 0], [2, 20, 0], [2, 21, 0], [2, 22, 0], [2, 23, 0], [3, 0, 0], [3, 1, 0], [3, 2, 0], [3, 3, 0],
+                    [3, 4, 0], [3, 5, 0], [3, 6, 0], [3, 7, 0], [3, 8, 0], [3, 9, 0], [3, 10, 0], [3, 11, 0], [3, 12, 0], [3, 13, 0], [3, 14, 0], [3, 15, 0], [3, 16, 0],
+                    [3, 17, 0], [3, 18, 0], [3, 19, 0], [3, 20, 0], [3, 21, 0], [3, 22, 0], [3, 23, 0], [4, 0, 0], [4, 1, 0], [4, 2, 0], [4, 3, 0], [4, 4, 0], [4, 5, 0],
+                    [4, 6, 0], [4, 7, 0], [4, 8, 0], [4, 9, 0], [4, 10, 0], [4, 11, 0], [4, 12, 0], [4, 13, 0], [4, 14, 0], [4, 15, 0], [4, 16, 0], [4, 17, 0], [4, 18, 0],
+                    [4, 19, 0], [4, 20, 0], [4, 21, 0], [4, 22, 0], [4, 23, 0], [5, 0, 0], [5, 1, 0], [5, 2, 0], [5, 3, 0], [5, 4, 0], [5, 5, 0], [5, 6, 0], [5, 7, 0],
+                    [5, 8, 0], [5, 9, 0], [5, 10, 0], [5, 11, 0], [5, 12, 0], [5, 13, 0], [5, 14, 0], [5, 15, 0], [5, 16, 0], [5, 17, 0], [5, 18, 0], [5, 19, 0], [5, 20, 0],
+                    [5, 21, 0], [5, 22, 0], [5, 23, 0], [6, 0, 0], [6, 1, 0], [6, 2, 0], [6, 3, 0], [6, 4, 0], [6, 5, 0], [6, 6, 0], [6, 7, 0], [6, 8, 0], [6, 9, 0], [6, 10, 0],
+                    [6, 11, 0], [6, 12, 0], [6, 13, 0], [6, 14, 0], [6, 15, 0], [6, 16, 0], [6, 17, 0], [6, 18, 0], [6, 19, 0], [6, 20, 0], [6, 21, 0], [6, 22, 0], [6, 23, 0]
+                ];
+                //处理时间
+                var date = new Date();
+                for(var i in myJson){
+                    myJson[i].time = myJson[i].time.split(' ');
+                    var thatDay = new Date(myJson[i].time[0]+'').getDay();
+                    thatDay = parseInt(thatDay);
+                    if(parseInt(thatDay) == 0 ){
+                        thatDay = 7;
+                    }
+                    myJson[i].time = myJson[i].time[1].split(":");
+                    var thatHour = parseInt(myJson[i].time[0]);
+                    weekCladarData[(thatDay - 1)*24 + thatHour - 1][2] = myJson[i].pZXYGDN;
+                }
+                calendarWeek.hideLoading();
+                calendarWeek.setOption({
+                    series: {
+                        data: myMap(weekDays, weekHours, weekCladarData)
+                    }
+                });
+            },
+            error:function(){
+                console.log('周能耗json请求失败');
+            }
+        })
+    }
+    weekClandarGetJson();
 </script>
 <script>
     hasLogin =  true;

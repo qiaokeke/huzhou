@@ -28,12 +28,20 @@ public class PowerServiceImpl implements PowerService {
     @Override
     public List<PowerZXYGDNView> selectTswkHoursZXYGDNViewsByACode(String aCode) {
         List<PowerZXYGDNInfo> infos = powerDao.selectPowerZXYGDNInfosByACodeAndTime(aCode, TimeUtil.getTswkDate().get(1),TimeUtil.getTswkDate().get(2));
+        System.out.println(infos);
+
         //合并到views
         List<PowerZXYGDNView> views = new ArrayList<>();
 
         Info2ViewUtil.powerZXYGDNInfos2Views(infos,views);
+        System.out.println(views);
+
         Info2ViewUtil.subPowerZXYGDNViews(views);
 
+        //删除最大的异常值
+
+        Info2ViewUtil.delectMaxPowerZXYGDNView(views);
+        Info2ViewUtil.delectMaxPowerZXYGDNView(views);
         return views;
     }
 

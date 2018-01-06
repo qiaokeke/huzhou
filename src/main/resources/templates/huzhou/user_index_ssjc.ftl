@@ -547,9 +547,6 @@
             }
         }
         dateRange = [s, e];
-        // console.log(s);
-        // console.log(e);
-        // console.log(dateRange);
         var myChart = echarts.init(document.getElementById('calendar1'));
         myChart.showLoading();
 
