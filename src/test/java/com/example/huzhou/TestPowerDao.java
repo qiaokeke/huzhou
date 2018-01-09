@@ -1,5 +1,6 @@
 package com.example.huzhou;
 
+import com.example.huzhou.entity.power.PowerAllInfo;
 import com.example.huzhou.entity.power.PowerZXYGDNInfo;
 import com.example.huzhou.mapper.test1.PowerDao;
 import org.junit.Test;
@@ -32,6 +33,13 @@ public class TestPowerDao {
         }
     }
 
+    @Test
+    public void  testSelectPowerAllInfos(){
+        List<PowerAllInfo> powerAllInfos = powerDao.selectPowerAllInfos();
+        for (PowerAllInfo info:powerAllInfos){
+            System.out.println(info);
+        }
+    }
 
 
 }

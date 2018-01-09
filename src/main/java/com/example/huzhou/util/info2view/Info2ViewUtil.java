@@ -59,6 +59,9 @@ public class Info2ViewUtil {
     public static  void delectMaxPowerZXYGDNView(List<PowerZXYGDNView> views){
         PowerZXYGDNView view = Collections.max(views,new PowerZXYGDNViewComparator());
 
+        if(view.getpZXYGDN()<50)
+            return;
+
         //暂时先删除这个
 
         for(int i=0;i<views.size();i++){

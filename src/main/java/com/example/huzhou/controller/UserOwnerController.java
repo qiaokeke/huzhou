@@ -2,6 +2,8 @@ package com.example.huzhou.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.example.huzhou.entity.*;
+import com.example.huzhou.entity.power.PowerAllInfo;
+import com.example.huzhou.mapper.test1.PowerDao;
 import com.example.huzhou.mapper.test1.UserDao;
 import com.example.huzhou.mapper.test1.UserOwnerDao;
 import com.example.huzhou.service.PowerInfoService;
@@ -36,11 +38,14 @@ public class UserOwnerController {
     PowerInfoService powerInfoService;
 
     @Autowired
+    PowerDao powerDao;
+
+    @Autowired
     UserOwnerDao userOwnerDao;
     @RequestMapping("/todayList")
     @ResponseBody
-    public  List<PowerListInfo> getTodayList(){
-        return  userOwnerDao.selectPowerListInfo();
+    public  List<PowerAllInfo> getTodayList(){
+        return  powerDao.selectPowerAllInfos();
     }
 
     @RequestMapping("/getTop5Company")
