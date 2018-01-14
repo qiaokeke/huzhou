@@ -15,4 +15,5 @@ public interface PowerService {
 
     List<PowerZXYGDNView> selectTswkHoursZXYGDNViewsByACode(String aCode);
 
+    List<PowerZXYGDNView> selectTDayHoursZXYGDNViewsByACode(String aCode);
 }

@@ -5,10 +5,12 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.huzhou.entity.PowerInfo;
 import com.example.huzhou.entity.PowerInfoDH;
 import com.example.huzhou.entity.WaterInfo;
+import com.example.huzhou.entity.power.PowerZXYGDNView;
 import com.example.huzhou.service.PowerInfoService;
 import com.example.huzhou.service.PowerInfoServiceDH;
 import com.example.huzhou.service.UserOwnerService;
 import com.example.huzhou.service.UserService;
+import com.example.huzhou.service.power.PowerService;
 import com.example.huzhou.util.BeiLvUtil;
 import com.example.huzhou.util.ConstantUtil;
 import com.example.huzhou.util.JsonUtil;
@@ -38,6 +40,9 @@ public class PowerInfoDetectController {
     UserService userService;
     @Autowired
     UserOwnerService userOwnerService;
+
+    @Autowired
+    PowerService powerService;
 
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -90,6 +95,15 @@ public class PowerInfoDetectController {
             for (int j = 0; j < ConstantUtil.PCODE_LIST.length; j++) {
                 if ((int) object == ConstantUtil.PCODE_LIST[j]) {
                     // 去原来的数据库里查询数据库
+                    //更新
+                    List<PowerZXYGDNView> views = powerService.selectTDayHoursZXYGDNViewsByACode(aCode);
+                    for (PowerZXYGDNView view:views){
+                        Map<String, String> mapELetric = new HashMap<>();
+                        mapELetric.put("time", view.getTime());
+                        mapELetric.put("electric",String.valueOf(view.getpZXYGDN()));
+                        list.add(mapELetric);
+                    }
+                    /**
                     eletricSsjc = powerInfoService.getEletricSsjc((int) pList.get(0));
                     for (int k = 1; k < eletricSsjc.size(); k++) {
                         Map<String, String> mapELetric = new HashMap<>();
@@ -106,6 +120,7 @@ public class PowerInfoDetectController {
                         mapELetric.put("electric", String.valueOf(value));
                         list.add(mapELetric);
                     }
+                     **/
                     flag = false;
                     break;
                 }

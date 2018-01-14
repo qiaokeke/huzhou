@@ -230,6 +230,9 @@ function getList(){
            //遍历所有对象
            var allNum = 0;
            for(var i in myList){
+               myList[i].adianLiu = myList[i].adianLiu || 0;
+               myList[i].bdianLiu = myList[i].bdianLiu || 0;
+               myList[i].cdianLiu = myList[i].cdianLiu || 0;
                allNum++;
            }
            //计算页数
@@ -268,7 +271,7 @@ function getList(){
                    console.log("all: "+ endNum);
                    var str = '';
                    for(var index = beginNum;index < endNum; index++){
-                       str+='<tr><td>'+id+'</td><td><a href=\"rootSingleData\" target=\"_blank\">'+myList[index].eName+'</a></td><td>'+myList[index].dianYa+'</td><td>'+myList[index].dianLiu+'</td><td>'+myList[index].yggl+'</td><td>'+myList[index].zgl+'</td><td>'+myList[index].glys+'</td><td>'+myList[index].pdn+'</td><td>'+myList[index].zdn+'</td><td>'+myList[index].jdn+'</td><td>'+myList[index].fdn+'</td><td>'+myList[index].gdn+'</td><td>'+myList[index].multiple+'</td><td>'+myList[index].time+'</td></tr>'
+                       str+='<tr><td>'+id+'</td><td><a href=\"rootSingleData\" target=\"_blank\">'+myList[index].eName+'</a></td><td>'+myList[index].dianYa+'</td><td>'+myList[index].adianLiu+'</td><td>'+myList[index].bdianLiu+'</td><td>'+myList[index].cdianLiu+'</td><td>'+myList[index].yggl+'</td><td>'+myList[index].glys+'</td><td>'+myList[index].zdn+'</td><td>'+myList[index].jdn+'</td><td>'+myList[index].fdn+'</td><td>'+myList[index].gdn+'</td><td>'+myList[index].multiple+'</td><td>'+myList[index].time+'</td></tr>'
                        id ++;
                    }
                    $("#todayList").html(str);

@@ -171,6 +171,8 @@ public class PowerAllInfo {
     }
 
     public String getTime() {
+        if (time==null)
+            return "设备离线";
         return time;
     }
 

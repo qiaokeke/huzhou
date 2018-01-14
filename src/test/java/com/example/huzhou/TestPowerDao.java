@@ -2,7 +2,9 @@ package com.example.huzhou;
 
 import com.example.huzhou.entity.power.PowerAllInfo;
 import com.example.huzhou.entity.power.PowerZXYGDNInfo;
+import com.example.huzhou.entity.power.PowerZXYGDNView;
 import com.example.huzhou.mapper.test1.PowerDao;
+import com.example.huzhou.service.power.PowerService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,4 +44,12 @@ public class TestPowerDao {
     }
 
 
+    @Autowired
+    PowerService powerService;
+    @Test
+    public void testselectTDayHoursZXYGDNViewsByACode(){
+        List<PowerZXYGDNView> views = powerService.selectTDayHoursZXYGDNViewsByACode("A15");
+        System.out.println(views);
+
+    }
 }

@@ -1,5 +1,6 @@
 package com.example.huzhou.util;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -38,10 +39,19 @@ public class TimeUtil {
 
         Map<Integer,String> tswkDateMap = new HashMap();
         tswkDateMap.put(1,new SimpleDateFormat(formatter).format(new Date(new Date().getTime()-2*24*60*60*1000)));
-        tswkDateMap.put(2,new SimpleDateFormat(formatter).format(new Date(new Date().getTime()+60*60*1000)));
+        tswkDateMap.put(2,new SimpleDateFormat(formatter).format(new Date(new Date().getTime())));
         tswkDateMap.put(3,String.valueOf(2));
         return tswkDateMap;
     }
 
+    public static Map<Integer,String> getTDayDate(){
+        String formatter = "yyyy-MM-dd";
+
+        Map<Integer,String> tswkDateMap = new HashMap();
+        tswkDateMap.put(1,new SimpleDateFormat(formatter).format(new Date(new Date().getTime()-0*24*60*60*1000)));
+        tswkDateMap.put(2,new SimpleDateFormat(formatter).format(new Date(new Date().getTime()+1*24*60*60*1000)));
+        tswkDateMap.put(3,String.valueOf(1));
+        return tswkDateMap;
+    }
 
 }

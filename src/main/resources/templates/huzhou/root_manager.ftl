@@ -60,15 +60,15 @@
                     <th>序号</th>
                     <th>企业</th>
                     <th>电压</th>
-                    <th>电流</th>
+                    <th>A相电流</th>
+                    <th>B相电流</th>
+                    <th>C相电流</th>
                     <th>有功功率</th>
-                    <th>总功率</th>
                     <th>功率因数</th>
-                    <th>总功率因数</th>
                     <th>有功总电能</th>
-                    <th>有功尖电能</th>
-                    <th>有功峰电能</th>
-                    <th>有功谷电能</th>
+                    <th>本月有功尖电能</th>
+                    <th>本月有功峰电能</th>
+                    <th>本月有功谷电能</th>
                     <th>倍率</th>
                     <th>采集时间</th>
                 </tr>
@@ -114,8 +114,6 @@
 		$(function(){
 			hasLogin =  true;
 			userHero = 'root';
-//			$("#nav").load("nav.html");
-//			$("#footer-in").load("footer_new.html");
 		});
 	  </script>
     <script type="text/javascript">

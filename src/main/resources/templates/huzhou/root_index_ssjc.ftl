@@ -2,48 +2,50 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>实时监测</title>
     <script src="/static/js/jquery.min.js"></script>
     <script src="/static/js/echarts/echarts.js"></script>
     <script src="/static/js/echarts/echarts-liquidfill.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
     <script src="/static/js/echarts/echartGL.js"></script>
-    <link rel="stylesheet" type="text/css" href="/static/css/layer.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/layer.css"/>
     <script src="/static/js/layer.js"></script>
     <script src="/static/js/alert_null_data.js"></script>
-    <link href="/static/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
-    <link rel="icon" href="/static/picture/logo.ico" />
-    <link rel="stylesheet" type="text/css" href="/static/css/nav/nav-style.css" />
+    <link href="/static/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
+    <link rel="icon" href="/static/picture/logo.ico"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/nav/nav-style.css"/>
 
-    <link href="/static/css/main.css" type="text/css" rel="stylesheet" />
-    <link href="/static/css/font-awesome.min.css" type="text/css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="/static/css/calendar.css" />
+    <link href="/static/css/main.css" type="text/css" rel="stylesheet"/>
+    <link href="/static/css/font-awesome.min.css" type="text/css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/calendar.css"/>
 
     <!--新增导航样式-->
-    <link href="/static/css/nav/newmain.css" rel="stylesheet" />
+    <link href="/static/css/nav/newmain.css" rel="stylesheet"/>
     <style type="text/css">
         a {
             font-family: sans-serif 宋体;
             font-size: 16px;
         }
 
-        .nav_tabs>li.active>a {
+        .nav_tabs > li.active > a {
             color: #000;
         }
 
         #menu-top a:hover {
             color: white !important;
         }
-        .report{
+
+        .report {
             float: right;
             margin-right: 10px;
         }
 
-        .btn-primary{
+        .btn-primary {
             background-color: #5bc0de;
             border-color: #46b8da;
         }
+
         .btn-primary :hover {
             background-color: #46b8da;
         }
@@ -79,21 +81,30 @@
             </div>
             <div class="row">
                 <ul class="nav nav-tabs" role="tablist" id="mytabs">
-                    <li role="presentation" class="active"><a href="#curdata" aria-controls="home" role="tab" data-toggle="tab">实时数据</a></li>
-                    <li role="presentation"><a href="#calendar" aria-controls="profile" role="tab" data-toggle="tab">分时能耗日历</a></li>
-                    <li role="presentation"><a href="#calendar-new" aria-controls="profile" role="tab" data-toggle="tab">峰谷能耗日历</a></li>
-                    <li role="presentation"><a href="#calendar-week" aria-controls="profile" role="tab" data-toggle="tab">周能耗日历</a></li>
-                    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">能耗目标</a></li>
-                    <li role="presentation"><a href="#money" aria-controls="money" role="tab" data-toggle="tab">可用余额</a></li>
+                    <li role="presentation" class="active"><a href="#curdata" aria-controls="home" role="tab"
+                                                              data-toggle="tab">实时数据</a></li>
+                    <li role="presentation"><a href="#calendar" aria-controls="profile" role="tab" data-toggle="tab">分时能耗日历</a>
+                    </li>
+                    <li role="presentation"><a href="#calendar-new" aria-controls="profile" role="tab"
+                                               data-toggle="tab">峰谷能耗日历</a></li>
+                    <li role="presentation"><a href="#calendar-week" aria-controls="profile" role="tab"
+                                               data-toggle="tab">周能耗日历</a></li>
+                    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">能耗目标</a>
+                    </li>
+                    <li role="presentation"><a href="#money" aria-controls="money" role="tab" data-toggle="tab">可用余额</a>
+                    </li>
                 </ul>
                 <div class="tab-content">
                     <!--实时监测-->
-                    <div role="tabpanel" class="tab-pane active" id="curdata" style="width: 100%; height: 400px; border: 1px solid #ccc; padding: 10px;"></div>
+                    <div role="tabpanel" class="tab-pane active" id="curdata"
+                         style="width: 100%; height: 400px; border: 1px solid #ccc; padding: 10px;"></div>
                     <!--能耗日历--分时能耗-->
                     <div role="tabpanel" class="tab-pane " id="calendar">
                         <div class="row">
-                            <div class="col-md-6" id="calendar1" style="width: 585px; height: 420px; border: 1px solid #ccc; padding: 10px;"></div>
-                            <div class="col-md-6" style="width: 585px; height: 420px; border: 1px solid #ccc; padding: 10px;">
+                            <div class="col-md-6" id="calendar1"
+                                 style="width: 585px; height: 420px; border: 1px solid #ccc; padding: 10px;"></div>
+                            <div class="col-md-6"
+                                 style="width: 585px; height: 420px; border: 1px solid #ccc; padding: 10px;">
                                 <a href="javascript:void(0)" style=" color:#111;">分时能耗</a>
                                 <div id="useage" style="width: 585px; height: 400px;"></div>
                             </div>
@@ -136,13 +147,15 @@
                                             <input type="button" value="查询" class="btn btn-primary" id="findit"/>
                                         </form>
                                     </div>
-                                    <div style="height: 500px;width: 570px; margin: 0 auto;margin-top: 50px;" id="calendar-container"></div>
+                                    <div style="height: 500px;width: 570px; margin: 0 auto;margin-top: 50px;"
+                                         id="calendar-container"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!-- 周能耗日历 -->
-                    <div role="tabpanel" class="tab-pane" id="calendar-week" style="width: 1148px; height: 700px; padding: 10px;"></div>
+                    <div role="tabpanel" class="tab-pane" id="calendar-week"
+                         style="width: 1148px; height: 700px; padding: 10px;"></div>
                     <!--能耗目标-->
                     <div role="tabpanel" class="tab-pane " id="messages">
                         <div class="container">
@@ -160,9 +173,12 @@
                                 </div>
                             </div>
                             <div class="row" style="padding-top: 20px;">
-                                <div class="col-md-4" id="electrical" style="width: 390px; height: 400px; border: 1px solid #ccc;  "></div>
-                                <div class="col-md-4" id="water" style="width: 390px; height: 400px; border: 1px solid #ccc;  "></div>
-                                <div class="col-md-4" id="comType" style="width: 390px; height: 400px; border: 1px solid #ccc;  "></div>
+                                <div class="col-md-4" id="electrical"
+                                     style="width: 390px; height: 400px; border: 1px solid #ccc;  "></div>
+                                <div class="col-md-4" id="water"
+                                     style="width: 390px; height: 400px; border: 1px solid #ccc;  "></div>
+                                <div class="col-md-4" id="comType"
+                                     style="width: 390px; height: 400px; border: 1px solid #ccc;  "></div>
                             </div>
                         </div>
                     </div>
@@ -170,12 +186,16 @@
                     <div role="tabpanel" class="tab-pane" id="money">
                         <div class="container">
                             <div class="row">
-                                <div class="col-md-6" id="left_money" style="width:585px; height: 410px; border: 1px solid #ccc;"></div>
+                                <div class="col-md-6" id="left_money"
+                                     style="width:585px; height: 410px; border: 1px solid #ccc;"></div>
                                 <div class="col-md-6" style=" width:585px;height: 410px; border: 1px solid #ccc;">
                                     <div class="row">
                                         <ul class="nav nav-tabs" role="tablist">
-                                            <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">电费</a></li>
-                                            <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">水费</a></li>
+                                            <li role="presentation" class="active"><a href="#home" aria-controls="home"
+                                                                                      role="tab"
+                                                                                      data-toggle="tab">电费</a></li>
+                                            <li role="presentation"><a href="#profile" aria-controls="profile"
+                                                                       role="tab" data-toggle="tab">水费</a></li>
                                         </ul>
                                         <div class="tab-content">
                                             <div role="tabpanel" class="tab-pane active" id="home">
@@ -293,9 +313,13 @@
                                         <a class="btn btn-info" href="javascript:void(0)" aria-label="Delete">
                                             <i class="fa fa-weixin fa-2x"></i>
                                         </a>
-                                        <img src="/static/picture/pay.png" class="btn btn-info" />
-                                        <a class="report" href="note" target="_blank"><button class="btn btn-primary">通知单</button></a>
-                                        <a class="report" href="report" target="_blank"><button class="btn btn-primary">电费单</button></a>
+                                        <img src="/static/picture/pay.png" class="btn btn-info"/>
+                                        <a class="report" href="note" target="_blank">
+                                            <button class="btn btn-primary">通知单</button>
+                                        </a>
+                                        <a class="report" href="report" target="_blank">
+                                            <button class="btn btn-primary">电费单</button>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -310,26 +334,26 @@
 <div id="footer-in"><#include "footer_1.html"></div>
 <script>
     //获取url上的参数
-       var urlStr =  decodeURI(window.location.href);
-       var num = urlStr.indexOf("?");
-       urlStr = urlStr.substr(num+1); //取得所有参数
-       pList = urlStr.split("&"); //各个参数放到数组里
-       var getP = pList[0].split('=');
-       pList[0] = getP[1];
-       getP = pList[1].split('=');
-       pList[1] = getP[1];
-       $("#aCode").html(pList[0]);
-       $("#cName").html(pList[1]);
+    var urlStr = decodeURI(window.location.href);
+    var num = urlStr.indexOf("?");
+    urlStr = urlStr.substr(num + 1); //取得所有参数
+    pList = urlStr.split("&"); //各个参数放到数组里
+    var getP = pList[0].split('=');
+    pList[0] = getP[1];
+    getP = pList[1].split('=');
+    pList[1] = getP[1];
+    $("#aCode").html(pList[0]);
+    $("#cName").html(pList[1]);
     $.ajax({
-        url:'/company/info',
-        dataType:'json',
-        success:function(info){
+        url: '/company/info',
+        dataType: 'json',
+        success: function (info) {
             var index;
-            for(var p in info){
-                $("#companyNameList").append('<option>'+info[p].code+' '+info[p].name+'</option>');
+            for (var p in info) {
+                $("#companyNameList").append('<option>' + info[p].code + ' ' + info[p].name + '</option>');
             }
-            for(var i in info){
-                if(pList[0] === info[i].code){
+            for (var i in info) {
+                if (pList[0] === info[i].code) {
                     index = i;
                 }
             }
@@ -340,7 +364,7 @@
             $("#cKind").html('无');
 //            }
         },
-        error: function(){
+        error: function () {
             console.log("公司信息获取失败。");
         }
     });
@@ -350,7 +374,8 @@
         var args = sHref.split("?");
         var retval = "";
         if (args[0] == sHref) /*参数为空*/ {
-            return retval; /*无需做任何处理*/
+            return retval;
+            /*无需做任何处理*/
         }
         var str = args[1];
         args = str.split("&");
@@ -362,16 +387,25 @@
         }
         return retval;
     }
+    //选择2017年份时，月份只能显示12月份
+    $("#year").change(function () {
+        if(parseInt($("#year").val()) == 2017){
+            $("#month").html("<option value =\"12\">12</option>");
+        }else {
+            $("#month").html("<option value =\"01\">1</option><option value =\"02\">2</option><option value =\"03\">3</option><option value =\"04\">4</option><option value =\"05\">5</option><option value =\"06\">6</option><option value =\"07\">7</option><option value =\"08\">8</option><option value =\"09\">9</option><option value =\"10\">10</option><option value =\"11\">11</option><option value =\"12\">12</option>");
+        }
+
+    })
 </script>
 <script type="text/javascript">
     <!--加载导航条-->
-    $(function() {
+    $(function () {
         //让下拉框显示当前年月份
         var thisdate = new Date();
-        var thisMonth = thisdate.getMonth()+1;
+        var thisMonth = thisdate.getMonth() + 1;
         var thisYear = thisdate.getFullYear();
-        $("#month option:nth-child("+thisMonth+")").attr('selected','selected');
-        $("#year option[value="+thisYear+"]").attr('selected','selected');
+        $("#month option:nth-child(" + thisMonth + ")").attr('selected', 'selected');
+        $("#year option[value=" + thisYear + "]").attr('selected', 'selected');
         /*加载导航条*/
         var params;
         var value = GetArgsFromHref(window.location.href, params);
@@ -379,9 +413,9 @@
     /**/
 
     /*实时数据*/
-    $(function() {
+    $(function () {
         var WEChart = echarts.init(document.getElementById('curdata'));
-        var xData = function() {
+        var xData = function () {
             var data = [];
             for (var i = 1; i <= 24; i++) {
                 data.push(i + "时");
@@ -389,8 +423,8 @@
             return data;
         }();
         //设置默认值
-        var data_power = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-        var data_water = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+        var data_power = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        var data_water = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
         WEChart.showLoading();
         option = {
             tooltip: {
@@ -407,10 +441,10 @@
             },
             toolbox: {
                 feature: {
-                    dataView: { show: true, readOnly: false },
-                    magicType: { show: true, type: ['line', 'bar'] },
-                    restore: { show: true },
-                    saveAsImage: { show: true },
+                    dataView: {show: true, readOnly: false},
+                    magicType: {show: true, type: ['line', 'bar']},
+                    restore: {show: true},
+                    saveAsImage: {show: true},
                     dataZoom: {
                         yAxisIndex: 'none'
                     }
@@ -422,7 +456,7 @@
                 end: 80
             }],
             legend: {
-                data: ['用水量','用电量']
+                data: ['用水量', '用电量']
             },
 
             xAxis: [{
@@ -446,9 +480,9 @@
                     axisLabel: {
                         formatter: '{value} 立方米'
                     },
-                    splitLine:{
-                        lineStyle:{
-                            color:"red"
+                    splitLine: {
+                        lineStyle: {
+                            color: "red"
                         }
                     }
                 },
@@ -461,8 +495,8 @@
                     axisLabel: {
                         formatter: '{value} KWH'
                     },
-                    splitLine:{
-                        lineStyle:{
+                    splitLine: {
+                        lineStyle: {
                             color: '#2F4554'
                         }
                     }
@@ -472,13 +506,13 @@
                 {
                     name: '用水量',
                     type: 'bar',
-                    yAxisIndex:0,
+                    yAxisIndex: 0,
                     data: data_water
                 },
                 {
                     name: '用电量',
                     type: 'bar',
-                    yAxisIndex:1,
+                    yAxisIndex: 1,
                     data: data_power
                 }
             ]
@@ -487,27 +521,28 @@
         WEChart.setOption(option);
 
 //        请求路径
-        setWEUrl = "/ssjc/water?aCode="+pList[0];
-        function getMyJson(){
+        setWEUrl = "/ssjc/water?aCode=" + pList[0];
+
+        function getMyJson() {
             $.ajax({
                 type: 'GET',
                 dataType: 'json',
                 async: false,
                 url: setWEUrl,
-                success: function(myJson) {
+                success: function (myJson) {
                     //处理时间
-                    for(var index in myJson){
+                    for (var index in myJson) {
                         var timeStr = myJson[index].time.split(' ');
                         myJson[index].time = timeStr[1];
                         timeStr = myJson[index].time.split(":");
                         myJson[index].time = parseInt(timeStr[0]);
                     }
-                    for(var i in myJson){
+                    for (var i in myJson) {
                         //控制水的能耗为10以下
-                        if(myJson[i].water && myJson[i].time != 0 && myJson[i].water < 10){
+                        if (myJson[i].water && myJson[i].time != 0 && myJson[i].water < 10) {
                             data_water[myJson[i].time - 1] = myJson[i].water;
                         }
-                        else if(myJson[i].electric && myJson[i] != 0){
+                        else if (myJson[i].electric && myJson[i] != 0) {
                             data_power[myJson[i].time - 1] = myJson[i].electric;
                         }
                     }
@@ -516,24 +551,25 @@
                         series: [{
                             name: '用水量',
                             data: data_water,
-                            yAxisIndex:0
+                            yAxisIndex: 0
                         },
                             {
                                 name: '用电量',
                                 data: data_power,
-                                yAxisIndex:1
+                                yAxisIndex: 1
                             }
                         ]
                     });
                 },
-                error : function() {
+                error: function () {
                     console.log("实时监测json信息读取失败");
                 }
             });
         }
+
         getMyJson();
         /*实时监测请求实时数据*/
-        setInterval(function() {
+        setInterval(function () {
             getMyJson();
         }, 3600000);
 
@@ -543,7 +579,7 @@
         //获取当前年月
         var myDate = new Date();
         var thisYear = myDate.getFullYear();
-        var thisMonth = myDate.getMonth()+1;
+        var thisMonth = myDate.getMonth() + 1;
         var dateRange = ['2017-08-01', '2017-08-31'];
         //月份的天数
         var numDate1 = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -565,27 +601,29 @@
         var ClaChart = echarts.init(document.getElementById('calendar1'));
         ClaChart.showLoading();
 
-        calendarUrl =  '/ssjc/timeCalendar?aCode='+pList[0];
+        calendarUrl = '/ssjc/timeCalendar?aCode=' + pList[0];
         /*能耗日历请求实时数据*/
         hasClick = false;
-        function setClendarOption(){
-            if(!hasClick){
-                calendarUrl =  '/ssjc/timeCalendar?aCode='+pList[0];
-            }else{
+
+        function setClendarOption() {
+            if (!hasClick) {
+                calendarUrl = '/ssjc/timeCalendar?aCode=' + pList[0];
+            } else {
                 var newACode = $("#companyNameList").val().split(" ");
-                calendarUrl =  '/ssjc/timeCalendar?aCode='+newACode[0];
+                calendarUrl = '/ssjc/timeCalendar?aCode=' + newACode[0];
             }
             $.ajax({
                 type: 'GET',
                 dataType: "json",
                 async: false,
-                url:calendarUrl,
-                success: function(myJson) {
+                url: calendarUrl,
+                success: function (myJson) {
                     //处理时间
-                    for(var i in myJson){
+                    for (var i in myJson) {
                         var d = myJson[i].time.split("-");
                         myJson[i].time = parseInt(d[2]);
                     }
+
                     function getVirtulData(year, month) {
                         year = year || '2017';
                         var date = +echarts.number.parseDate(year + '-' + month + '-01');
@@ -597,8 +635,8 @@
                             data.push([
                                 echarts.format.formatTime('yyyy-MM-dd', time), 0]);
                         }
-                        for(var index in myJson){
-                            data[myJson[index].time-1][1] = myJson[index].timeConsumption;
+                        for (var index in myJson) {
+                            data[myJson[index].time - 1][1] = myJson[index].timeConsumption;
                         }
                         return data;
                     }
@@ -617,7 +655,7 @@
                         tooltip: {
                             trigger: 'item',
                             formatter: function (params) {
-                                return params.value[0]+ '  '+ '能耗: '+ params.value[1];
+                                return params.value[0] + '  ' + '能耗: ' + params.value[1];
                             }
                         },
                         legend: {
@@ -661,7 +699,7 @@
                                 firstDay: 1,
                                 nameMap: 'cn'
                             },
-                            yearLabel: { show: false },
+                            yearLabel: {show: false},
                             monthLabel: {
                                 nameMap: 'cn',
                                 show: true
@@ -679,9 +717,9 @@
                             coordinateSystem: 'calendar',
                             data: data,
                             /*随机获取scatter的大小*/
-                            symbolSize: function(val) {
+                            symbolSize: function (val) {
 
-                                return Math.abs(val[1]) / 5 > 10 ? 5 : Math.abs(val[1]) / 5 ;
+                                return Math.abs(val[1]) / 5 > 10 ? 5 : Math.abs(val[1]) / 5;
 //                                return val[1] / 5 > 10 ? 5 : val[1] / 5 ;
 //                                return val[1] / 5  ;
                             },
@@ -696,11 +734,11 @@
                                 type: 'effectScatter',
                                 coordinateSystem: 'calendar',
                                 calendarIndex: 0,
-                                data: data.sort(function(a, b) {
+                                data: data.sort(function (a, b) {
                                     return b[1] - a[1];
                                 }).slice(0, 5),
-                                symbolSize: function(val) {
-                                    return Math.abs(val[1]) / 50 > 30 ? 5 : Math.abs(val[1]) / 50 ;
+                                symbolSize: function (val) {
+                                    return Math.abs(val[1]) / 50 > 30 ? 5 : Math.abs(val[1]) / 50;
 //                                    return val[1] / 50 > 30 ? 30 :val[1] / 50;
                                 },
                                 showEffectOn: 'render',
@@ -716,11 +754,11 @@
                                     }
                                 },
                                 zlevel: 1
-                            },{
+                            }, {
                                 type: 'heatmap',
                                 coordinateSystem: 'calendar',
                                 data: data,
-                                symbolSize:1,
+                                symbolSize: 1,
                                 itemStyle: {
                                     normal: {
                                         color: '#fff'
@@ -732,17 +770,17 @@
                     ClaChart.hideLoading();
                     ClaChart.setOption(option);
                 },
-                error: function() {
+                error: function () {
                     console.log("分时能耗日历json信息读取失败");
                 }
             });
 
-            ClaChart.on('click', function(params) {
-                var getFenUrl = '/ssjc/timeConsumption?aCode='+pList[0]+'&calendar=' + params.value[0];
+            ClaChart.on('click', function (params) {
+                var getFenUrl = '/ssjc/timeConsumption?aCode=' + pList[0] + '&calendar=' + params.value[0];
                 var useage = echarts.init(document.getElementById('useage'));
                 useage.showLoading();
                 //分时能耗
-                var data_timeConsumption = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+                var data_timeConsumption = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
                 var all_consumption = 0;
                 option1 = {
                     title: {
@@ -837,7 +875,7 @@
                                 }
                             },
                             axisLabel: {
-                                formatter: function(v) {
+                                formatter: function (v) {
                                     return v ? v : '';
                                 },
                                 textStyle: {
@@ -894,7 +932,7 @@
                             },
                             axisLabel: {
                                 show: false,
-                                formatter: function(v) {
+                                formatter: function (v) {
                                     return v ? v : '';
                                 },
                                 textStyle: {
@@ -920,9 +958,9 @@
                     dataType: 'json',
                     async: true,
                     url: getFenUrl,
-                    success: function(data) {
+                    success: function (data) {
                         //处理时间
-                        for(var p in data){
+                        for (var p in data) {
                             var timeStr = data[p].time.split(" ");
                             data[p].time = timeStr[1];
                             timeStr = data[p].time.split(":");
@@ -930,8 +968,8 @@
                         }
                         //装入数据
                         for (var index in data) {
-                            if(data[index].time !== 0){
-                                data_timeConsumption[data[index].time-1] = data[index].timeConsumption;
+                            if (data[index].time !== 0) {
+                                data_timeConsumption[data[index].time - 1] = data[index].timeConsumption;
                                 all_consumption += parseInt(data[index].timeConsumption);
                             }
                         }
@@ -939,7 +977,7 @@
                         useage.hideLoading();
                         useage.setOption({
                             title: {
-                                text: params.value[0]+" "+params.value[1]  //显示日期和当天的总耗能
+                                text: params.value[0] + " " + params.value[1]  //显示日期和当天的总耗能
                             },
                             series: [{
                                 name: '上网时间',
@@ -947,12 +985,13 @@
                             }]
                         });
                     },
-                    error: function() {
+                    error: function () {
                         console.log("json信息请求失败");
                     }
                 });
             });
         }
+
         setClendarOption();
         /*能耗目标----耗电情况*/
         var powerChart = echarts.init(document.getElementById('electrical'));
@@ -1086,17 +1125,17 @@
         waterChart.hideLoading();
         waterChart.setOption(option);
         $.ajax({
-            url:'/ssjc/target',
-            dataType:'json',
-            success: function(myJson){
-                if(JSON.stringify(myJson) === '[]'){
+            url: '/ssjc/target',
+            dataType: 'json',
+            success: function (myJson) {
+                if (JSON.stringify(myJson) === '[]') {
                     console.log("能耗目标json获取成功，但该公司暂无数据！");
                     return 0;
                 }
-                if(myJson.eleTarget == '未知'){
+                if (myJson.eleTarget == '未知') {
                     $("#eleTarget").val("60kwh");
                     $("#warTarget").val("30m³");
-                }else{
+                } else {
                     $("#eleTarget").val(myJson.eleTarget);
                     $("#warTarget").val(myJson.waterTarget);
                 }
@@ -1105,11 +1144,11 @@
                 var toolMassaagW = '';
                 var perE = 0;
                 var perW = 0;
-                if(myJson.elePercent == '只有当前月份的数据' || myJson.elePercent == '没有本月数据'|| myJson.elePercent == '未能读取到本月数据'){
+                if (myJson.elePercent == '只有当前月份的数据' || myJson.elePercent == '没有本月数据' || myJson.elePercent == '未能读取到本月数据') {
 
                 }
             },
-            error: function(){
+            error: function () {
                 console.log("能耗目标json获取失败！");
             }
         });
@@ -1129,18 +1168,18 @@
             radar: {
                 // shape: 'circle',
                 indicator: [
-                    { name: '1月', max: 1650 },
-                    { name: '2月', max: 3000 },
-                    { name: '3月', max: 3800 },
-                    { name: '4月', max: 3800 },
-                    { name: '5月', max: 3800 },
-                    { name: '6月', max: 3800 },
-                    { name: '7月', max: 3800 },
-                    { name: '8月', max: 3800 },
-                    { name: '9月', max: 2600 },
-                    { name: '10月', max: 650 },
-                    { name: '11月', max: 6500 },
-                    { name: '12月', max: 6500 }
+                    {name: '1月', max: 1650},
+                    {name: '2月', max: 3000},
+                    {name: '3月', max: 3800},
+                    {name: '4月', max: 3800},
+                    {name: '5月', max: 3800},
+                    {name: '6月', max: 3800},
+                    {name: '7月', max: 3800},
+                    {name: '8月', max: 3800},
+                    {name: '9月', max: 2600},
+                    {name: '10月', max: 650},
+                    {name: '11月', max: 6500},
+                    {name: '12月', max: 6500}
                 ]
             },
             series: [{
@@ -1192,7 +1231,7 @@
                         fontSize: 18
                     }
                 },
-                data: [{ value: 8, name: '用电量' }]
+                data: [{value: 8, name: '用电量'}]
             },
                 {
                     name: '用水量',
@@ -1213,7 +1252,7 @@
                             fontSize: 18
                         }
                     },
-                    data: [{ value: 3, name: '用水量' }]
+                    data: [{value: 3, name: '用水量'}]
                 }
 
             ]
@@ -1222,35 +1261,39 @@
         myChartYE.setOption(option);
 
         // 选择企业点击确定之后
-        $("#selectCom").click(function(){
+        $("#selectCom").click(function () {
             var newACode = $("#companyNameList").val().split(" ");
-            setWEUrl = "/ssjc/water?aCode="+newACode[0];
+            //更新公司名称
+            $("#cName").html(newACode[1]);
+            setWEUrl = "/ssjc/water?aCode=" + newACode[0];
             getMyJson();
-            gufengUrl = '/ssjc/gufengCalendar?aCode='+newACode[0]+'&time='+$("#year").val()+"-"+$("#month").val()+"-1";
+            gufengUrl = '/ssjc/gufengCalendar?aCode=' + newACode[0] + '&time=' + $("#year").val() + "-" + $("#month").val() + "-1";
             pList[0] = newACode[0];
             hasClick = true;
             setClendarOption();
-            weekClandarUrl = "/huzhou/api/power/tswkHoursZXYGDNViews?aCode="+newACode[0];
+            weekClandarUrl = "/huzhou/api/power/tswkHoursZXYGDNViews?aCode=" + newACode[0];
             weekClandarGetJson();
         });
     })
 </script>
 <#--周能耗日历-->
 <script>
-    weekClandarUrl = "/huzhou/api/power/tswkHoursZXYGDNViews?aCode="+pList[0];
+    weekClandarUrl = "/huzhou/api/power/tswkHoursZXYGDNViews?aCode=" + pList[0];
+
     function myMap(days, hours, data) {
         myData = [];
         i = 0;
         for (k = 0; k < days.length; k++) {
             for (j = 0; j < hours.length; j++) {
                 myData.push([weekDays[k], weekHours[j], weekCladarData[i][2]]);
-                myData.push([weekDays[k],weekHours[j], 0]);
+                myData.push([weekDays[k], weekHours[j], 0]);
                 i++;
             }
         }
         return myData;
     }
-    $(function() {
+
+    $(function () {
         weekHours = ['1时', '2时', '3时', '4时', '5时', '6时',
             '7时', '8时', '9时', '10时', '11时', '12时',
             '13时', '14时', '15时', '16时', '17时', '18时',
@@ -1277,9 +1320,9 @@
             tooltip: {},
             toolbox: {
                 feature: {
-                    dataView: { show: true, readOnly: false },
-                    restore: { show: true },
-                    saveAsImage: { show: true }
+                    dataView: {show: true, readOnly: false},
+                    restore: {show: true},
+                    saveAsImage: {show: true}
                 }
             },
             visualMap: [{
@@ -1347,11 +1390,12 @@
         calendarWeek.hideLoading();
         calendarWeek.setOption(calendarWeekOption);
     });
-    function weekClandarGetJson(){
+
+    function weekClandarGetJson() {
         $.ajax({
-            url:weekClandarUrl,
-            dataType:'json',
-            success:function (myJson) {
+            url: weekClandarUrl,
+            dataType: 'json',
+            success: function (myJson) {
                 //重置
                 weekCladarData = [
                     [0, 0, 0], [0, 1, 0], [0, 2, 0], [0, 3, 0], [0, 4, 0], [0, 5, 0], [0, 6, 0], [0, 7, 0], [0, 8, 0], [0, 9, 0], [0, 10, 0], [0, 11, 0], [0, 12, 0],
@@ -1370,16 +1414,16 @@
                 ];
                 //处理时间
                 var date = new Date();
-                for(var i in myJson){
+                for (var i in myJson) {
                     myJson[i].time = myJson[i].time.split(' ');
-                    var thatDay = new Date(myJson[i].time[0]+'').getDay();
+                    var thatDay = new Date(myJson[i].time[0] + '').getDay();
                     thatDay = parseInt(thatDay);
-                    if(parseInt(thatDay) == 0 ){
+                    if (parseInt(thatDay) == 0) {
                         thatDay = 7;
                     }
                     myJson[i].time = myJson[i].time[1].split(":");
                     var thatHour = parseInt(myJson[i].time[0]);
-                    weekCladarData[(thatDay - 1)*24 + thatHour - 1][2] = myJson[i].pZXYGDN;
+                    weekCladarData[(thatDay - 1) * 24 + thatHour - 1][2] = myJson[i].pZXYGDN;
                 }
                 calendarWeek.hideLoading();
                 calendarWeek.setOption({
@@ -1388,15 +1432,16 @@
                     }
                 });
             },
-            error:function(){
+            error: function () {
                 console.log('周能耗json请求失败');
             }
         })
     }
+
     weekClandarGetJson();
 </script>
 <script>
-    hasLogin =  true;
+    hasLogin = true;
     userHero = 'root';
 </script>
 <script type="text/javascript" src="/static/js/nav.js"></script>

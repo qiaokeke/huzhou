@@ -177,7 +177,7 @@
                 </div>
             </a>
         </div>
-        <div class="col-md-2 col-xs-3">
+       <#-- <div class="col-md-2 col-xs-3">
             <a id="ydzc" href="javascript:void(0)">
                 <div class="noti-box">
                 <span class="icon-box bg-color-pink set-icon">
@@ -188,7 +188,7 @@
                     </div>
                 </div>
             </a>
-        </div>
+        </div>-->
         <div class="col-md-2 col-xs-3">
             <a id="yqnh" href="javascript:void(0)">
                 <div class="noti-box">
@@ -207,7 +207,7 @@
     <#include "db_analysis_of_electric_energy.html">
     <#include "db_ydl.html">
     <#include "db_qsyc.html">
-    <#include "db_electricity_consumption_growth.html">
+    <#--<#include "db_electricity_consumption_growth.html">-->
     <#include "db_nenghaotongji.html">
 </div>
 <!--<div class="footer-sec"  role="navigation">

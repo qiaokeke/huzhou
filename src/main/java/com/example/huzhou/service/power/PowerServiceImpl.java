@@ -45,5 +45,23 @@ public class PowerServiceImpl implements PowerService {
         return views;
     }
 
+    @Override
+    public List<PowerZXYGDNView> selectTDayHoursZXYGDNViewsByACode(String aCode) {
+        List<PowerZXYGDNInfo> infos = powerDao.selectPowerZXYGDNInfosByACodeAndTime(aCode, TimeUtil.getTDayDate().get(1),TimeUtil.getTDayDate().get(2));
+
+        //合并到views
+        List<PowerZXYGDNView> views = new ArrayList<>();
+
+        Info2ViewUtil.powerZXYGDNInfos2Views(infos,views);
+
+        Info2ViewUtil.subPowerZXYGDNViews(views);
+
+        //删除最大的异常值
+
+        Info2ViewUtil.delectMaxPowerZXYGDNView(views);
+        Info2ViewUtil.delectMaxPowerZXYGDNView(views);
+        return views;
+    }
+
 
 }
