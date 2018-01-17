@@ -9,6 +9,7 @@ import com.example.huzhou.mapper.test1.UserOwnerDao;
 import com.example.huzhou.service.PowerInfoService;
 import com.example.huzhou.service.PowerInfoServiceDH;
 import com.example.huzhou.service.UserOwnerService;
+import com.example.huzhou.task.ScheduledInfos;
 import com.example.huzhou.util.BeiLvUtil;
 import com.example.huzhou.util.ConstantUtil;
 import com.example.huzhou.util.Utils;
@@ -94,7 +95,10 @@ public class UserOwnerController {
     public List<Object> getSsjcMapInfo(){
         List<Object> list = new ArrayList<>();
         Map<String,Object> map = new HashMap<>();
-        List<SsjcMapInfo> ssjcMapInfoList = userOwnerService.selectMapInfo();
+        List<SsjcMapInfo> ssjcMapInfoList = ScheduledInfos.ssjcMapInfoList;
+        if(ssjcMapInfoList ==null)
+            ssjcMapInfoList = userOwnerService.selectMapInfo();
+
         for (SsjcMapInfo ssjcMapInfo:ssjcMapInfoList){
             map.put(ssjcMapInfo.getFactoryNumber(),ssjcMapInfo);
         }
@@ -182,7 +186,11 @@ public class UserOwnerController {
     @RequestMapping("/getEConsumption")
     @ResponseBody
     public List<PowerWaterRtimeInfo> getRealTimeInfos(){
-        List<PowerWaterRtimeInfo> powerWaterRtimeInfos = userOwnerService.selectRealTimeInfos();
+        //从scheduled中获取，若不存在再从service获取
+        List<PowerWaterRtimeInfo> powerWaterRtimeInfos = ScheduledInfos.powerWaterRtimeInfos;
+        if(powerWaterRtimeInfos==null)
+            powerWaterRtimeInfos = userOwnerService.selectRealTimeInfos();
+
 
         Collections.sort(powerWaterRtimeInfos,new RtimeComparator());
 
